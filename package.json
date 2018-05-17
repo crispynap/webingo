@@ -1,0 +1,28 @@
+{
+  "name": "webingo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crispynap/webingo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crispynap/webingo/issues"
+  },
+  "homepage": "https://github.com/crispynap/webingo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "moment": "^2.22.1",
+    "partial-js": "^1.1.5",
+    "socket.io": "^2.1.0"
+  }
+}
