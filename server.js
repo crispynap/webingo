@@ -30,6 +30,9 @@ let sessions = {
   add(session) { this.list.push(session); },
   remove(rSession) {
     this.list = _.filter(this.list, session => session.getSessionId() !== rSession.getSessionId());
+  },
+  getSession(sessionId) {
+    return _.find(this.list, session => session.getSessionId() == sessionId)
   }
 };
 
@@ -37,10 +40,13 @@ class Session {
   constructor(clientId) {
     this._clientId = clientId;
     this._sessionId = genSession();
+    this._players = [];
   }
 
   getClientId() { return this._clientId }
   getSessionId() { return this._sessionId }
+  addPlayer(player) { _players.push(player) }
+  removePlayer(rPlayer) { this._players = _.filter(this._players, player => player.getId() !== rPlayer.getId()); }
 }
 
 io.on('connection', function (socket) {
@@ -51,22 +57,27 @@ io.on('connection', function (socket) {
 
   socket.on('disconnect', function () {
     console.log('user disconnected');
-    sessions.remove(thisSession);
-    console.log('sessions:', sessions);
+    if (thisSession) sessions.remove(thisSession);
   });
 
   socket.on('new session', function () {
     thisSession = new Session(socket.id);
     sessions.add(thisSession);
     socket.emit('set session number', thisSession.getSessionId());
-
-    console.log('sessions:', sessions);
   });
 
   socket.on('close session', function () {
     sessions.remove(thisSession);
     thisSession = undefined;
-    console.log('sessions:', sessions);
+  });
+
+  socket.on('new player', function (nick, sessionId) {
+    if (!sessions.getSession(sessionId)) {
+      socket.emit('no session');
+      return;
+    }
+
+
   });
 });
 
