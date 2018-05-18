@@ -42,7 +42,7 @@ let sessions = {
 class Session {
   constructor(clientId) {
     this._clientId = clientId;
-    this._sessionId = genSession();
+    this._sessionId = genSessionNum();
     this._players = [];
   }
 
@@ -71,11 +71,13 @@ class Player {
 }
 
 io.on('connection', function (socket) {
-  console.log('user connected:', socket.id);
-
   socket.on('disconnect', function () {
-    console.log('user disconnected');
     if (sessions.getSession(socket.id)) sessions.remove(socket.id);
+    if (socket.sessionId) {
+      const session = sessions.getSession(socket.sessionId);
+      session.removePlayer(socket.id);
+      io.to(socket.sessionId).emit('player changed', session.getPlayersNick());
+    }
   });
 
   socket.on('new session', function () {
@@ -115,10 +117,9 @@ io.on('connection', function (socket) {
 });
 
 
-const genSession = () => {
+const genSessionNum = () => {
   let sessionNum = genNumber(1, 3);
-  while (_.some(sessions, session => _.v(session, 'id') === sessionNum))
-    sessionNum = genNumber(1, 3);
+  while (sessions.getSession(sessionNum)) sessionNum = genNumber(1, 3);
   return sessionNum;
 };
 const genNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;

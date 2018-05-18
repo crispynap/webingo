@@ -26,6 +26,12 @@ $(document).ready(() => {
     socket.emit('new player', nick, session);
   });
 
+  $('#connect_session_btn').click(() => {
+    const nick = $('#nick_input').val();
+    const session = $('#session_input').val();
+    socket.emit('new player', nick, session);
+  });
+
   socket.on('set session number', sessionId => {
     $('.new_session .session_number').text(sessionId);
   });
