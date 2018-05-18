@@ -48,7 +48,6 @@
 
 .connect_session{
   position:relative;
-  /* padding: 10px; */
   width: 100%;
   margin: 30px auto 0;
 }
@@ -81,6 +80,11 @@
   opacity: 1;
 }
 
+.wait_session>span{
+  display: block;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
 .session_num{
   margin-bottom: 30px;
   text-align: left;

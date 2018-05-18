@@ -20,15 +20,21 @@ $(document).ready(() => {
     socket.emit('new player', nick, session);
   });
 
-  socket.on('set session number', num => {
-    $('#session_number').text(num);
+  socket.on('set session number', sessionId => {
+    $('#session_number').text(sessionId);
   });
 
   socket.on('no session', () => {
     $('.session_warn').addClass('on').text('세션 번호를 잘못 입력하였습니다.');
   });
 
-  socket.on('duplicate nick', () => {
+  socket.on('duplicated nick', () => {
     $('.session_warn').addClass('on').text('동일한 별명이 존재합니다.');
+  });
+
+  socket.on('player added', (sessionId) => {
+    $('.session_set').removeClass('on');
+    $('.wait_session').addClass('on');
+    $('#session_number').text(sessionId);
   });
 });

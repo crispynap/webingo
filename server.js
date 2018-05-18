@@ -45,8 +45,24 @@ class Session {
 
   getClientId() { return this._clientId }
   getSessionId() { return this._sessionId }
-  addPlayer(player) { _players.push(player) }
+  addPlayer(player) { this._players.push(player) }
+  getPlayer(idOrNick) {
+    return _.find(this._players, player =>
+      player.getId() == idOrNick || player.getNick() == idOrNick
+    )
+  }
   removePlayer(rPlayer) { this._players = _.filter(this._players, player => player.getId() !== rPlayer.getId()); }
+}
+
+class Player {
+  constructor(clientId, nick) {
+    this._clientId = clientId;
+    this._nick = nick;
+  }
+
+  getId() { return this._clientId; }
+  getNick() { return this._nick; }
+
 }
 
 io.on('connection', function (socket) {
@@ -72,20 +88,21 @@ io.on('connection', function (socket) {
   });
 
   socket.on('new player', function (nick, sessionId) {
-    if (!sessions.getSession(sessionId)) {
-      socket.emit('no session');
-      return;
-    }
+    const session = sessions.getSession(sessionId);
 
+    if (!session) { socket.emit('no session'); return; }
+    if (session.getPlayer(nick)) { socket.emit('duplicated nick'); return; }
 
+    session.addPlayer(new Player(socket.id, nick));
+    socket.emit('player added', session.getSessionId());
   });
 });
 
 
 const genSession = () => {
-  let sessionNum = genNumber(1, 9999);
+  let sessionNum = genNumber(1, 3);
   while (_.some(sessions, session => _.v(session, 'id') === sessionNum))
-    sessionNum = genNumber(1, 9999);
+    sessionNum = genNumber(1, 3);
   return sessionNum;
 };
 const genNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
