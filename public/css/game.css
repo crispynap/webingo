@@ -1,34 +1,64 @@
-#window_map {
-  display: none;
-}
 
-#window_charactor {
-  display: none;
-}
-
-#window_ground {
-  position: absolute;
-  right: 0;
-  top: 30px;
-  width: 70%;
-  height: calc(100% - 30px - 30px);
-  overflow: hidden;
-}
-
-#window_log {
-  position: absolute;
-  left:0;
-  top: 30px;
-  width: 30%;
-  height: calc(65% - 30px);
+#window_gameset {
+  position: relative;
+  top: 20%;
+  left: 23%;
+  width: 50%;
+  height: 50%;
   border: 1px solid #ddd;
+  text-align: center;
+  padding: 30px;
 }
 
-#window_buttons {
-  position: absolute;
-  left:0;
-  bottom: 30px;
-  width: 30%;
-  height: calc(35% - 29px);
-  border: 1px solid #ddd;
+#window_gameset h1{
+  font-size: 28px;
+}
+
+#window_gameset button {
+  width: 140px;
+  height: 40px;
+  font-size: 16px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  box-shadow: 0px 2px 0px 1px #888,
+  0px 0px 0px 1px #888;
+}
+
+#window_gameset button:active{
+  box-shadow: 0px 0px 0px 1px #888;
+  transform: translateY(2px);
+
+}
+.new_session{
+  position:relative;
+  top: 16%;
+  
+}
+.open_session{
+  position:relative;
+  padding: 10px;
+  padding-bottom: 40px;
+  width: 200px;
+  margin: 0 auto;
+  border-bottom: 1px solid #aaa;
+}
+
+.connect_session{
+  position:relative;
+  padding: 10px;
+  width: 200px;
+  margin: 25px auto 0;
+}
+
+.connect_setting{
+  margin-bottom: 20px;
+}
+
+.connect_setting > input {
+  width: 100px;
+  height: 20px;
+  margin-left: 4px;
+  padding-left: 3px;
+  font-size: 14px;
+
 }
