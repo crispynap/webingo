@@ -72,20 +72,28 @@
 
 .session_num{
   margin-bottom: 30px;
+  text-align: left;
+  padding: 0 5%;
+}
+.session_num>span:first-child{
+  font-size: 22px;
 }
 .session_players{
   margin-bottom: 30px;
+  text-align: left;
+  padding: 0 5%;
+}
+.session_players>span:first-child{
+  font-size: 22px;
 }
 
 #close_session_btn{
   position: absolute;
   width: 30%;
-  /* margin-right: 5%; */
   color: #b44344;
   bottom: 0;
   left: 5%;
   height: 15%;
-  /* display: block; */
   font-size: 20px;
 }
 #start_session_btn{
