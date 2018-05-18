@@ -30,7 +30,7 @@ module.exports = function (io) {
       )
     }
     getPlayersNick() { return _.map(this._players, player => player._nick); }
-
+    getPlayers() { return this._players; }
     removePlayer(playerId) { this._players = _.filter(this._players, player => player.getId() !== playerId); }
   }
 
@@ -47,7 +47,11 @@ module.exports = function (io) {
 
   io.on('connection', function (socket) {
     socket.on('disconnect', function () {
-      if (sessions.getSession(socket.id)) sessions.remove(socket.id);
+      if (sessions.getSession(socket.id)) {
+        sessions.remove(socket.id);
+        return;
+      }
+
       if (socket.sessionId) {
         const session = sessions.getSession(socket.sessionId);
         session.removePlayer(socket.id);
@@ -72,7 +76,6 @@ module.exports = function (io) {
 
     socket.on('new player', function (nick, sessionId) {
       const session = sessions.getSession(sessionId);
-
       if (!session) { socket.emit('no session'); return; }
       if (session.getPlayer(nick)) { socket.emit('duplicated nick'); return; }
 
