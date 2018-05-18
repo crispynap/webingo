@@ -63,11 +63,17 @@
   font-size: 14px;
 }
 
-.new_session{
-  position:relative;
-  top: 16%;
-  height: 84%;
+.new_session>span{
+  display: block;
+  margin-top: 10%;
+  margin-bottom: 8%;
+  font-size: 18px;
+  padding: 0 30px;
+  line-height: 26px;
+  word-break: keep-all;
 }
+.new_session b{color: #adade4;font-weight: bold;}
+
 
 .session_warn{
   margin-bottom: 15px;
@@ -108,7 +114,7 @@
   position: absolute;
   width: 30%;
   color: #b44344;
-  bottom: 0;
+  bottom: 3%;
   left: 5%;
   height: 15%;
   font-size: 20px;
@@ -126,7 +132,7 @@
   width: 55%;
   color: #449744;
   position: absolute;
-  bottom: 0;
+  bottom: 3%;
   right: 5%;
   height: 15%;
   font-size: 20px;
