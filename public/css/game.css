@@ -1,20 +1,22 @@
+.off{ display: none;}
+.on{ display: block;}
 
-#window_gameset {
+.window_gameset {
   position: relative;
-  top: 20%;
-  left: 23%;
+  top: 10%;
+  margin: auto;
   width: 50%;
-  height: 50%;
+  height: 70%;
   border: 1px solid #ddd;
   text-align: center;
-  padding: 30px;
+  padding: 50px 0;
 }
 
-#window_gameset h1{
+.window_gameset h1{
   font-size: 28px;
 }
 
-#window_gameset button {
+.window_gameset button {
   width: 140px;
   height: 40px;
   font-size: 16px;
@@ -24,20 +26,21 @@
   0px 0px 0px 1px #888;
 }
 
-#window_gameset button:active{
+.window_gameset button:active{
   box-shadow: 0px 0px 0px 1px #888;
   transform: translateY(2px);
 
 }
-.new_session{
+
+.session_set{
   position:relative;
   top: 16%;
-  
 }
+
 .open_session{
   position:relative;
   padding: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
   width: 200px;
   margin: 0 auto;
   border-bottom: 1px solid #aaa;
@@ -47,18 +50,50 @@
   position:relative;
   padding: 10px;
   width: 200px;
-  margin: 25px auto 0;
+  margin: 50px auto 0;
 }
 
-.connect_setting{
-  margin-bottom: 20px;
-}
+.nick_setting{margin-bottom: 15px;}
+.connect_setting{margin-bottom: 40px;}
 
-.connect_setting > input {
+.connect_session input {
   width: 100px;
   height: 20px;
   margin-left: 4px;
   padding-left: 3px;
   font-size: 14px;
+}
 
+.new_session{
+  position:relative;
+  top: 16%;
+  height: 84%;
+}
+
+.session_num{
+  margin-bottom: 30px;
+}
+.session_players{
+  margin-bottom: 30px;
+}
+
+#close_session_btn{
+  position: absolute;
+  width: 30%;
+  /* margin-right: 5%; */
+  color: #b44344;
+  bottom: 0;
+  left: 5%;
+  height: 15%;
+  /* display: block; */
+  font-size: 20px;
+}
+#start_session_btn{
+  width: 55%;
+  color: #449744;
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  height: 15%;
+  font-size: 20px;
 }
