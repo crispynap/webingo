@@ -28,6 +28,8 @@ $(document).ready(() => {
 
   $('#start_session_btn').click(() => {
     socket.emit('session start');
+    $('.window_gameset').removeClass('on');
+    $('.main_screen').addClass('on');
   });
 
   socket.on('set session number', sessionId => {
@@ -57,5 +59,17 @@ $(document).ready(() => {
 
   socket.on('player changed', nicks => {
     $('.player_list').text(`${nicks.join(', ')} (${nicks.length}명)`);
+  });
+
+  socket.on('main message', msg => {
+    $('.main_display').append(`<span class="main_msg">${msg}</span>`);
+  });
+
+  socket.on('main message big', msg => {
+    $('.main_display').append(`<span class="main_msg_big">${msg}</span>`);
+  });
+
+  socket.on('set main button', label => {
+    $('.main_display').append(`<button>${label}</button>`);
   });
 });
