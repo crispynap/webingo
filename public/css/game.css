@@ -1,5 +1,5 @@
-.off{ display: none;}
-.on{ display: block;}
+.component{ display: none;}
+.component.on{ display: block;}
 
 .window_gameset {
   position: relative;

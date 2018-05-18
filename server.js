@@ -45,6 +45,7 @@ class Session {
 
 io.on('connection', function (socket) {
   let thisSession;
+  let thisPlayer;
 
   console.log('user connected:', socket.id);
 
