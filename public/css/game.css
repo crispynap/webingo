@@ -48,9 +48,9 @@
 
 .connect_session{
   position:relative;
-  padding: 10px;
-  width: 200px;
-  margin: 50px auto 0;
+  /* padding: 10px; */
+  width: 100%;
+  margin: 30px auto 0;
 }
 
 .nick_setting{margin-bottom: 15px;}
@@ -68,6 +68,17 @@
   position:relative;
   top: 16%;
   height: 84%;
+}
+
+.session_warn{
+  margin-bottom: 15px;
+  display: block;
+  font-size: 14px;
+  color: #dc4d4d;
+  opacity: 0;
+}
+.session_warn.on{
+  opacity: 1;
 }
 
 .session_num{
@@ -89,7 +100,6 @@
 .session_players>span:first-child{
   font-size: 22px;
 }
-
 #close_session_btn{
   position: absolute;
   width: 30%;
