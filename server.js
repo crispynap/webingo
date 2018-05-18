@@ -3,6 +3,7 @@ const express = require("express");
 const index = require("./server/routes/index");
 const app = express();
 const bodyParser = require("body-parser");
+const log = console.log
 
 app.use(express.static("public"));
 app.use(bodyParser.json());
@@ -28,11 +29,13 @@ http.listen(3000, function () {
 let sessions = {
   list: [],
   add(session) { this.list.push(session); },
-  remove(rSession) {
-    this.list = _.filter(this.list, session => session.getSessionId() !== rSession.getSessionId());
+  remove(sessionId) {
+    this.list = _.filter(this.list, session => session.getSessionId() !== sessionId &&
+      session.getClientId() !== sessionId);
   },
   getSession(sessionId) {
-    return _.find(this.list, session => session.getSessionId() == sessionId)
+    return _.find(this.list, session => session.getSessionId() == sessionId ||
+      session.getClientId() === sessionId);
   }
 };
 
@@ -51,7 +54,9 @@ class Session {
       player.getId() == idOrNick || player.getNick() == idOrNick
     )
   }
-  removePlayer(rPlayer) { this._players = _.filter(this._players, player => player.getId() !== rPlayer.getId()); }
+  getPlayersNick() { return _.map(this._players, player => player._nick); }
+
+  removePlayer(playerId) { this._players = _.filter(this._players, player => player.getId() !== playerId); }
 }
 
 class Player {
@@ -66,25 +71,26 @@ class Player {
 }
 
 io.on('connection', function (socket) {
-  let thisSession;
-  let thisPlayer;
-
   console.log('user connected:', socket.id);
 
   socket.on('disconnect', function () {
     console.log('user disconnected');
-    if (thisSession) sessions.remove(thisSession);
+    if (sessions.getSession(socket.id)) sessions.remove(socket.id);
   });
 
   socket.on('new session', function () {
-    thisSession = new Session(socket.id);
-    sessions.add(thisSession);
-    socket.emit('set session number', thisSession.getSessionId());
+    const session = new Session(socket.id);
+    sessions.add(session);
+    sessionId = session.getSessionId();
+    socket.sessionId = sessionId;
+    socket.join(sessionId);
+    socket.emit('set session number', sessionId);
   });
 
   socket.on('close session', function () {
-    sessions.remove(thisSession);
-    thisSession = undefined;
+    sessions.remove(socket.id);
+    io.to(socket.sessionId).emit('session closed');
+    socket.sessionId = undefined;
   });
 
   socket.on('new player', function (nick, sessionId) {
@@ -94,7 +100,17 @@ io.on('connection', function (socket) {
     if (session.getPlayer(nick)) { socket.emit('duplicated nick'); return; }
 
     session.addPlayer(new Player(socket.id, nick));
-    socket.emit('player added', session.getSessionId());
+    socket.sessionId = sessionId;
+    socket.join(sessionId);
+    socket.emit('player added', sessionId);
+    io.to(sessionId).emit('player changed', session.getPlayersNick());
+  });
+
+  socket.on('session exit', () => {
+    const session = sessions.getSession(socket.sessionId)
+    session.removePlayer(socket.id);
+    io.to(socket.sessionId).emit('player changed', session.getPlayersNick());
+    socket.sessionId = undefined;
   });
 });
 
