@@ -1,0 +1,27 @@
+nav {position: relative;}
+.nav-left{
+  margin: 0 0 0 40px;
+}
+.nav-left h1{
+  display: inline-block;
+}
+.nav-left .nav-tabs{
+  display: inline-block;
+  vertical-align: bottom;
+  font-size: 18px;
+}
+.nav-left .nav-tabs>li>a{
+  padding: 10px 40px;
+}
+.nav-title{
+  margin: 30px 15px 0 30px;
+}
+.nav-right{
+  position: absolute;
+  right: 100px;
+  top: 30px;
+}
+nav .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
