@@ -75,8 +75,11 @@
   text-align: left;
   padding: 0 5%;
 }
-.session_num>span:first-child{
-  font-size: 22px;
+.session_num>span{  font-size: 22px;}
+#session_number{ 
+  color: #449744; 
+  font-weight: bold;
+  font-size: 24px;
 }
 .session_players{
   margin-bottom: 30px;
