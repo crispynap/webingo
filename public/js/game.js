@@ -61,15 +61,22 @@ $(document).ready(() => {
     $('.player_list').text(`${nicks.join(', ')} (${nicks.length}명)`);
   });
 
+
+
+  socket.on('main clear', label => {
+    $('.main_display .message_box').empty();
+    $('.main_display .button_box').empty().append(`<button id="next_btn">다음</button>`);
+    $('.button_box #next_btn').click(() => socket.emit('next queue'));
+
+    socket.emit('next queue');
+  });
+
   socket.on('main message', msg => {
-    $('.main_display').append(`<span class="main_msg">${msg}</span>`);
+    $('.main_display .message_box').append(`<span class="main_msg">${msg}</span>`);
   });
 
   socket.on('main message big', msg => {
-    $('.main_display').append(`<span class="main_msg_big">${msg}</span>`);
+    $('.main_display .message_box').append(`<span class="main_msg_big">${msg}</span>`);
   });
 
-  socket.on('set main button', label => {
-    $('.main_display').append(`<button>${label}</button>`);
-  });
 });

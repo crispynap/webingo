@@ -1,7 +1,8 @@
 const _ = require('partial-js');
 
 const startMsgs = [
-  { type: 'msg', msg: `빈고 게임에 참여한 여러분을 환영합니다.` },
+  { type: 'clear' },
+  { type: 'msg big', msg: `빈고 게임에 참여한 여러분을 환영합니다.` },
   { type: 'msg', msg: `이 게임에서 여러분은 빈고의 활동가가 됩니다.` },
   { type: 'msg', msg: `함께 빈고를 운영하며 빈고를 익히는 것이 이 게임의 목표입니다.` },
   { type: 'msg', msg: `그럼 시작해봅시다.` },
@@ -45,21 +46,21 @@ module.exports = function (io, sessions) {
       }
 
       setQueue(queue) { this._queue = queue; }
-      nextQueue() { queue.next(); }
+      nextQueue() { this._queue.next(); }
     }
 
     const emit = (event, msg) => socket.emit(event, msg);
     const timeoutEmit = (event, msg, time = 0) => setTimeout(() => emit(event, msg), time);
     const mainDpMsg = (msg, time = 0) => timeoutEmit('main message', msg, time);
     const mainDpMsgBig = (msg, time = 0) => timeoutEmit('main message big', msg, time);
-    const mainDpClear = (time = 0) => timeoutEmit('set main button', label, time);
+    const mainDpClear = () => timeoutEmit('main clear');
 
     const emitsQueue = function* (items) {
       for (let item of items) {
         switch (item.type) {
           case 'clear': mainDpClear(); break;
           case 'msg': mainDpMsg(item.msg); break;
-          case 'big msg': mainDpMsgBig(item.msg); break;
+          case 'msg big': mainDpMsgBig(item.msg); break;
         }
         yield;
       };
@@ -68,6 +69,7 @@ module.exports = function (io, sessions) {
     socket.on('session start', () => {
       game = new Game();
       game.setQueue(emitsQueue(startMsgs));
+      game.nextQueue();
     });
 
     socket.on('next queue', () => {
