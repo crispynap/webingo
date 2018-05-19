@@ -73,10 +73,12 @@ $(document).ready(() => {
 
   socket.on('main message', msg => {
     $('.main_display .message_box').append(`<span class="main_msg">${msg}</span>`);
+    $('.main_display .message_box').scrollTop($('.main_display .message_box')[0].scrollHeight);
   });
 
   socket.on('main message big', msg => {
     $('.main_display .message_box').append(`<span class="main_msg_big">${msg}</span>`);
+    $('.main_display .message_box').scrollTop($('.main_display .message_box')[0].scrollHeight);
   });
 
 });

@@ -141,12 +141,18 @@ button:active{
   font-size: 20px;
 }
 .main_screen > div {position: absolute; box-sizing: border-box;}
-.main_display{height: 55%;width: 50%;left: 25%;top: 15%;overflow: hidden;padding: 2% 2% 0;}
+.main_display{height: 55%;width: 50%;left: 25%;top: 15%;overflow: hidden;padding: 2% 7px 0 2%;}
+
 .bingo_display{ border-right: 1px solid #eee; height: 100%; width: calc(25% + 1px); left: 0;}
 .players_display{ border-left: 1px solid #eee; height: 100%; width: calc(25% + 1px); right: 0;}
 .top_display{ border-bottom: 1px solid #eee; height: calc(15% + 1px); width: 50%; top: 0; left: 25%; padding: 5px 10px;}
 .bottom_display{ border-top: 1px solid #eee; height: calc(30% + 1px); width: 50%; bottom: 0; left: 25%;}
 
+.main_display ::-webkit-scrollbar {  width: 10px;  border-radius: 4px;}
+.main_display .message_box{
+  height: 70%;
+  overflow-y:scroll;
+}
 .main_display .main_msg{
   display: block;
   font-size: 20px;
