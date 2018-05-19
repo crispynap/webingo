@@ -71,14 +71,20 @@ $(document).ready(() => {
     socket.emit('next queue');
   });
 
-  socket.on('main message', msg => {
-    $('.main_display .message_box').append(`<span class="main_msg">${msg}</span>`);
+  const mainMsgShow = (className, msg) => {
+    $('.main_display .message_box .old2').removeClass('old2').addClass('old3');
+    $('.main_display .message_box .old1').removeClass('old1').addClass('old2');
+    $('.main_display .message_box .new').removeClass('new').addClass('old1');
+    $('.main_display .message_box').append(`<span class="new ${className}">${msg}</span>`);
     $('.main_display .message_box').scrollTop($('.main_display .message_box')[0].scrollHeight);
+  }
+
+  socket.on('main message', msg => { mainMsgShow('main_msg', msg) });
+  socket.on('main message big', msg => { mainMsgShow('main_msg_big', msg) });
+
+  socket.on('set bank', msg => {
+    $('.bingo_display .namespace').append(`작은 은행`);
   });
 
-  socket.on('main message big', msg => {
-    $('.main_display .message_box').append(`<span class="main_msg_big">${msg}</span>`);
-    $('.main_display .message_box').scrollTop($('.main_display .message_box')[0].scrollHeight);
-  });
 
 });

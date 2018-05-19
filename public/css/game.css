@@ -101,9 +101,10 @@ button:active{
   font-weight: bold;
   font-size: 24px;
 }
-.main_screen .session_number{ 
-  color: #aaa; 
-  font-size: 18px;
+.main_screen .session_number{
+  color: #eee;
+  font-size: 16px;
+  font-weight: 500;
 }
 .session_players{
   margin-bottom: 30px;
@@ -141,15 +142,16 @@ button:active{
   font-size: 20px;
 }
 .main_screen > div {position: absolute; box-sizing: border-box;}
-.main_display{height: 55%;width: 50%;left: 25%;top: 15%;overflow: hidden;padding: 2% 7px 0 2%;}
+.main_display{height: 55%;width: 50%;left: 25%;top: 15%;overflow: hidden;padding: 2% 7px 0 2%;border: 1px solid #eee;}
 
-.bingo_display{ border-right: 1px solid #eee; height: 100%; width: calc(25% + 1px); left: 0;}
-.players_display{ border-left: 1px solid #eee; height: 100%; width: calc(25% + 1px); right: 0;}
-.top_display{ border-bottom: 1px solid #eee; height: calc(15% + 1px); width: 50%; top: 0; left: 25%; padding: 5px 10px;}
-.bottom_display{ border-top: 1px solid #eee; height: calc(30% + 1px); width: 50%; bottom: 0; left: 25%;}
+.bingo_display{height: 70%;width: calc(25% + 1px);left: 0;}
+.players_display{/* border-left: 1px solid #eee; */height: 100%;width: calc(25% + 1px);right: 0;}
+.top_display{/* border-bottom: 1px solid #eee; */height: calc(15% + 1px);width: 50%;top: 0;left: 25%;padding: 25px 10px 0;text-align: center;}
+.bottom_display{/* border-top: 1px solid #eee; */height: calc(30% + 1px);width: 75%;bottom: 0;left: 0;}
 
 .main_display ::-webkit-scrollbar {  width: 10px;  border-radius: 4px;}
 .main_display .message_box{
+  position: relative;
   height: 70%;
   overflow-y:scroll;
 }
@@ -168,6 +170,10 @@ button:active{
   text-align: center;
   margin-top: 20px;
 }
+.main_display .old1{ opacity: 0.65;}
+.main_display .old2{ opacity: 0.55;}
+.main_display .old3{ opacity: 0.4;}
+
 .main_display button{
   display: block;
   position: absolute;
