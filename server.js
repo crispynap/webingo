@@ -25,4 +25,4 @@ http.listen(3000, function () {
 
 
 const sessions = require("./server/logics/sessions")(io);
-const game = require("./server/logics/game")(io, sessions);
+const screen = require("./server/logics/screen")(io, sessions);

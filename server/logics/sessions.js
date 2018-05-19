@@ -19,6 +19,7 @@ module.exports = function (io) {
       this._clientId = clientId;
       this._sessionId = genSessionNum();
       this._players = [];
+      this._game = new Game();
     }
 
     getClientId() { return this._clientId }
@@ -42,6 +43,33 @@ module.exports = function (io) {
 
     getId() { return this._clientId; }
     getNick() { return this._nick; }
+
+  }
+
+  class Game {
+    constructor() {
+      this._charactors = [];
+      this._bingo = new Bingo();
+    }
+
+  }
+
+  class Charactor {
+    constructor(id, nick) {
+      this._id = id;
+      this._nick = nick;
+    }
+  }
+
+  class Bingo {
+    constructor(id, nick) {
+      this._id = id;
+      this._nick = nick;
+      this._communes = [];
+    }
+
+    addCommune(commune) { this._communes.push(commune) }
+    getCommunes() { return this._communes; }
 
   }
 

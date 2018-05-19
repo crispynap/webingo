@@ -86,5 +86,9 @@ $(document).ready(() => {
     $('.bingo_display .namespace').append(`작은 은행`);
   });
 
+  socket.on('set communes', msg => {
+    console.log(msg)
+    $('.bingo_display .namespace').append(msg);
+  });
 
 });
