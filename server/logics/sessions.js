@@ -1,4 +1,6 @@
 const _ = require('partial-js');
+const strings = require('../strings');
+
 
 module.exports = function (io) {
   let sessions = {
@@ -28,6 +30,10 @@ module.exports = function (io) {
     }
     getPlayersNick() { return _.map(this.players, player => player.nick); }
     removePlayer(id) { this.players = _.filter(this.players, player => player.clientId !== id); }
+
+    get communes() {
+      return this.game.bingo.communes;
+    }
   }
 
   class Player {
@@ -57,9 +63,19 @@ module.exports = function (io) {
     constructor(id, nick) {
       this.id = id;
       this.nick = nick;
-      this.communes = [];
+      this.communes = this.genCommunes();
     }
 
+    genCommunes() {
+      return new Commune();
+    }
+
+  }
+
+  class Commune {
+    constructor() {
+      this.name = 'a';
+    }
   }
 
   io.on('connection', function (socket) {

@@ -24,5 +24,5 @@ http.listen(3000, function () {
 
 
 
-const sessions = require("./server/logics/sessions")(io);
-const screen = require("./server/logics/screen")(io, sessions);
+require("./server/logics/sessions")(io);
+require("./server/logics/screen")(io);

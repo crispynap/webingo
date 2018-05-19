@@ -1,5 +1,5 @@
 const _ = require('partial-js');
-
+const S = require('../strings');
 
 module.exports = function (io, sessions) {
 
@@ -26,7 +26,8 @@ module.exports = function (io, sessions) {
     }
 
     const getCommunes = () => {
-      return 'a'
+      console.log(socket.session.communes)
+      return socket.session.communes;
     }
 
     const startScripts = [
