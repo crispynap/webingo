@@ -67,14 +67,16 @@ module.exports = function (io) {
     }
 
     genCommunes() {
+      const communes = [];
+      strings.getLCommuneName(['잘자리', '아랫집', '살림집'])
       return new Commune();
     }
 
   }
 
   class Commune {
-    constructor() {
-      this.name = 'a';
+    constructor(name) {
+      this.name = name;
     }
   }
 
