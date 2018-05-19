@@ -128,11 +128,10 @@ module.exports = function (io) {
 
 
   const genSessionNum = () => {
-    let sessionNum = genNumber(1, 3);
-    while (sessions.getSession(sessionNum)) sessionNum = genNumber(1, 3);
+    let sessionNum = _.random(1, 3);
+    while (sessions.getSession(sessionNum)) sessionNum = _.random(1, 3);
     return sessionNum;
   };
-  const genNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
   return sessions;
 }
