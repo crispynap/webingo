@@ -76,6 +76,8 @@ module.exports = function (io) {
 
     socket.on('new player', function (nick, sessionId) {
       const session = sessions.getSession(sessionId);
+      console.log(session)
+      console.log(session.getPlayer(nick));
       if (!session) { socket.emit('no session'); return; }
       if (session.getPlayer(nick)) { socket.emit('duplicated nick'); return; }
 
