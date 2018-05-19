@@ -33,7 +33,7 @@ $(document).ready(() => {
   });
 
   socket.on('set session number', sessionId => {
-    $('.new_session .session_number').text(sessionId);
+    $('.session_number').text(sessionId);
   });
 
   socket.on('no session', () => {
@@ -54,7 +54,7 @@ $(document).ready(() => {
     $('.session_warn').removeClass('on');
     $('.session_set').removeClass('on');
     $('.wait_session').addClass('on');
-    $('.wait_session .session_number').text(sessionId);
+    $('.session_number').text(sessionId);
   });
 
   socket.on('player changed', nicks => {
