@@ -1,23 +1,26 @@
 $(document).ready(() => {
 
   const socket = io();
+  const toggle = el => el.hasClass('on') ? off(el) : on(el);
+  const on = el => el.removeClass('off').addClass('on');
+  const off = el => el.removeClass('on').addClass('off');
 
   $('#new_session_btn').click(() => {
     socket.emit('new session');
-    $('.session_set').removeClass('on');
-    $('.new_session').addClass('on');
+    off($('.session_set'));
+    on($('.new_session'));
   });
 
   $('#close_session_btn').click(() => {
     socket.emit('close session');
-    $('.new_session').removeClass('on');
-    $('.session_set').addClass('on');
+    off($('.new_session'));
+    on($('.session_set'));
   });
 
   $('#exit_session_btn').click(() => {
     socket.emit('session exit');
-    $('.wait_session').removeClass('on');
-    $('.session_set').addClass('on');
+    off($('.wait_session'));
+    on($('.session_set'));
   });
 
   $('#connect_session_btn').click(() => {
@@ -28,8 +31,8 @@ $(document).ready(() => {
 
   $('#start_session_btn').click(() => {
     socket.emit('session start');
-    $('.window_gameset').removeClass('on');
-    $('.main_screen').addClass('on');
+    off($('.window_gameset'));
+    on($('.main_screen'));
   });
 
   socket.on('set session number', sessionId => {
@@ -37,23 +40,23 @@ $(document).ready(() => {
   });
 
   socket.on('no session', () => {
-    $('.session_warn').addClass('on').text('세션 번호를 잘못 입력하였습니다.');
+    on($('.session_warn')).text('세션 번호를 잘못 입력하였습니다.');
   });
 
   socket.on('session closed', () => {
-    $('.wait_session').removeClass('on');
-    $('.session_set').addClass('on');
-    $('.session_warn').addClass('on').text('세션이 종료되었습니다.');
+    off($('.wait_session'));
+    on($('.session_set'));
+    on($('.session_warn')).text('세션이 종료되었습니다.');
   });
 
   socket.on('duplicated nick', () => {
-    $('.session_warn').addClass('on').text('동일한 별명이 존재합니다.');
+    on($('.session_warn')).text('동일한 별명이 존재합니다.');
   });
 
   socket.on('player added', sessionId => {
-    $('.session_warn').removeClass('on');
-    $('.session_set').removeClass('on');
-    $('.wait_session').addClass('on');
+    off($('.session_warn'));
+    off($('.session_set'));
+    on($('.wait_session'));
     $('.session_number').text(sessionId);
   });
 
@@ -75,7 +78,7 @@ $(document).ready(() => {
     $('.main_display .message_box .old2').removeClass('old2').addClass('old3');
     $('.main_display .message_box .old1').removeClass('old1').addClass('old2');
     $('.main_display .message_box .new').removeClass('new').addClass('old1');
-    $('.main_display .message_box').append(`<span class="new ${className}">${msg}</span>`);
+    $('.main_display .message_box').append(`<span class="new ${className} fadeIn" >${msg}</span>`);
     $('.main_display .message_box').scrollTop($('.main_display .message_box')[0].scrollHeight);
   }
 
@@ -83,16 +86,22 @@ $(document).ready(() => {
   socket.on('main message big', msg => { mainMsgShow('main_msg_big', msg) });
 
   socket.on('set bank', msg => {
-    $('.bingo_display').append(`<div class="namespace">작은 은행</div>`);
+    $('.bingo_display').append(`
+      <div class="namespace delayedFadeIn">
+        <div class="changing_name">
+          <span>작은 은행</span>
+        </div>
+      </div>`);
   });
 
   socket.on('set bank name to bingo', msg => {
-    $('.bingo_display .namespace').text('빈고');
+    $('.bingo_display .namespace span').addClass('fadeOut');
+    $('.bingo_display .namespace').append('<span class="fadeIn">빈고</span>');
   });
 
   socket.on('set communes', communes => {
     $('.communes_display').append(`
-      <div class="communes">
+      <div class="communes delayedFadeIn">
         <div class="namespace">공동체들</div>
       </div>
     `);

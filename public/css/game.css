@@ -145,7 +145,7 @@ button:active{
 
 .bingo_display{height: 70%;width: calc(25% + 1px);left: 0;}
 .players_display{height: 100%;width: calc(25% + 1px);right: 0;}
-.top_display{height: calc(8% + 1px);width: 50%;top: 0;left: 25%;padding: 20px 10px 0;text-align: center;}
+.top_display{height: calc(8% + 1px);width: 50%;top: 0;left: 25%;padding: 20px 15px 0;text-align: left;}
 .communes_display{height: calc(32% + 1px);width: 75%;bottom: 0;left: 0;text-align: left;}
 
 .main_display ::-webkit-scrollbar {  width: 10px;  border-radius: 4px;}
@@ -190,10 +190,19 @@ button:active{
   border-bottom: 1px solid #aaa;
 }
 
+ .namespace .changing_name{
+   position: absolute;
+    width: 100%;
+    height: 100%;
+ }
+
 .bingo_display .namespace{
   margin-top: 22px;
   width: 80%;
+  position: relative;
+  height: 22px;
 }
+    
 
 .communes{    
   position: relative;
@@ -210,7 +219,7 @@ button:active{
 }
 .communes_display .commune i{
     font-size: 28px;
-      display: block;
+    display: block;
 }
 .communes_display .commune h1{
     font-size: 18px;
@@ -218,3 +227,14 @@ button:active{
     font-weight: 500;
 }
 .communes_display .commune h2{}
+
+.component.on{ animation: fadeIn 0.3s ease-in; }
+.fadeIn{ animation: fadeIn 0.5s ease-in;}
+.fadeOut{ animation: fadeOut 0.5s ease-in; animation-fill-mode: forwards;}
+.delayedFadeIn{ 
+  opacity:0; 
+  animation: fadeIn 0.6s ease-in 0.3s;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeIn {  0% {opacity: 0;}  100% {opacity: 1;}}
+@keyframes fadeOut {  0% {opacity: 1;}  100% {opacity: 0;}}
