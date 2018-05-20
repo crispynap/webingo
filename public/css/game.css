@@ -140,13 +140,13 @@ button:active{
   height: 15%;
   font-size: 20px;
 }
-.main_screen > div {position: absolute; box-sizing: border-box;}
+.main_screen > div {position: absolute;box-sizing: border-box;}
 .main_display{height: 60%;width: 50%;left: 25%;top: 8%;overflow: hidden;padding: 2% 7px 0 2%;border: 1px solid #eee;}
 
 .bingo_display{height: 70%;width: calc(25% + 1px);left: 0;}
 .players_display{height: 100%;width: calc(25% + 1px);right: 0;}
 .top_display{height: calc(8% + 1px);width: 50%;top: 0;left: 25%;padding: 20px 10px 0;text-align: center;}
-.communes_display{height: calc(32% + 1px);width: 75%;bottom: 0;left: 0;padding: 0 20px;}
+.communes_display{height: calc(32% + 1px);width: 75%;bottom: 0;left: 0;text-align: left;}
 
 .main_display ::-webkit-scrollbar {  width: 10px;  border-radius: 4px;}
 .main_display .message_box{
@@ -181,6 +181,7 @@ button:active{
   margin: auto;
   bottom: 5%;
 }
+
 .namespace{
   font-size: 20px;
   width: 90%;
@@ -188,17 +189,22 @@ button:active{
   padding-bottom: 7px;
   border-bottom: 1px solid #aaa;
 }
-.bingo_display{}
+
 .bingo_display .namespace{
   margin-top: 22px;
   width: 80%;
 }
 
-.communes_display{}
+.communes{    
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+}
 
 .communes_display .commune{
     float: left;
-    padding: 10px;
+    padding: 10px 15px;
     line-height: 25px;
     margin-top: 5px;
 }

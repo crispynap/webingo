@@ -83,14 +83,22 @@ $(document).ready(() => {
   socket.on('main message big', msg => { mainMsgShow('main_msg_big', msg) });
 
   socket.on('set bank', msg => {
-    $('.bingo_display .namespace').append(`작은 은행`);
+    $('.bingo_display').append(`<div class="namespace">작은 은행</div>`);
+  });
+
+  socket.on('set bank name to bingo', msg => {
+    $('.bingo_display .namespace').text('빈고');
   });
 
   socket.on('set communes', communes => {
-    $('.communes_display .namespace').append(`공동체들`);
+    $('.communes_display').append(`
+      <div class="communes">
+        <div class="namespace">공동체들</div>
+      </div>
+    `);
 
     _.each(communes, commune => {
-      $('.communes_display').append(`
+      $('.communes_display .communes').append(`
         <div class="commune">
           <i class="fas fa-home"></i>
           <h1 class="name">${commune.name}</h1>
