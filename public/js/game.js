@@ -88,6 +88,7 @@ $(document).ready(() => {
   socket.on('set bank', msg => {
     $('.bingo_display').append(`
       <div class="namespace delayedFadeIn">
+        <div class="animated_bottom_line"></div>
         <div class="changing_name">
           <span>작은 은행</span>
         </div>
@@ -102,7 +103,10 @@ $(document).ready(() => {
   socket.on('set communes', communes => {
     $('.communes_display').append(`
       <div class="communes delayedFadeIn">
-        <div class="namespace">공동체들</div>
+        <div class="namespace">
+          <div class="animated_bottom_line"></div>
+          공동체들
+        </div>
       </div>
     `);
 
@@ -112,9 +116,9 @@ $(document).ready(() => {
           <i class="fas fa-home"></i>
           <h1 class="name">${commune.name}</h1>
           <h2 class="members">구성원: ${commune.members}명</h2>
-          <h2 class="util">대출금: ${commune.util}</h2>
         </div>
       `);
+      // <h2 class="util">대출금: ${commune.util}</h2>
     });
   });
 

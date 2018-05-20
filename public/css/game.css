@@ -39,9 +39,8 @@ button:active{
   position:relative;
   padding: 10px;
   padding-bottom: 60px;
-  width: 200px;
+  width: 270px;
   margin: 0 auto;
-  border-bottom: 1px solid #aaa;
 }
 
 .connect_session{
@@ -63,8 +62,8 @@ button:active{
 
 .new_session>span{
   display: block;
-  margin-top: 10%;
-  margin-bottom: 8%;
+  margin-top: 40px;
+  margin-bottom: 30px;
   font-size: 18px;
   padding: 0 30px;
   line-height: 26px;
@@ -148,7 +147,7 @@ button:active{
 .top_display{height: calc(8% + 1px);width: 50%;top: 0;left: 25%;padding: 20px 15px 0;text-align: left;}
 .communes_display{height: calc(32% + 1px);width: 75%;bottom: 0;left: 0;text-align: left;}
 
-.main_display ::-webkit-scrollbar {  width: 10px;  border-radius: 4px;}
+.main_display ::-webkit-scrollbar {  width: 10px; border-radius: 4px;}
 .main_display .message_box{
   position: relative;
   height: 70%;
@@ -183,11 +182,12 @@ button:active{
 }
 
 .namespace{
+  position: relative;
   font-size: 20px;
   width: 90%;
   margin: 30px auto 0;
   padding-bottom: 7px;
-  border-bottom: 1px solid #aaa;
+  /* border-bottom: 1px solid #aaa; */
 }
 
  .namespace .changing_name{
@@ -226,7 +226,8 @@ button:active{
     margin-top: 7px;
     font-weight: 500;
 }
-.communes_display .commune h2{}
+
+
 
 .component.on{ animation: fadeIn 0.3s ease-in; }
 .fadeIn{ animation: fadeIn 0.5s ease-in;}
@@ -238,3 +239,14 @@ button:active{
 }
 @keyframes fadeIn {  0% {opacity: 0;}  100% {opacity: 1;}}
 @keyframes fadeOut {  0% {opacity: 1;}  100% {opacity: 0;}}
+
+.animated_bottom_line{
+  position: absolute; z-index: -1; width: 100%; height: 100%; top: 0; left: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #aaa;
+  transform: scaleX(0);
+  animation: spendLineX 0.7s cubic-bezier(.49,.05,.55,1.01) 0.3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes spendLineX {  0% {transform: scaleX(0);}  100% {transform: scaleX(1);}}
