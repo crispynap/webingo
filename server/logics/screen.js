@@ -26,8 +26,7 @@ module.exports = function (io, sessions) {
     }
 
     const getCommunes = () => {
-      console.log(socket.session.communes)
-      return socket.session.communes;
+      return socket.bingo.communes;
     }
 
     const startScripts = [
@@ -38,7 +37,7 @@ module.exports = function (io, sessions) {
       { type: 'msg', data: `그럼 시작해봅시다.` },
       { type: 'clear' },
       { type: 'msg', data: `20XX년, 여러분은 작은 은행을 하나 만듭니다.`, more: true },
-      { type: 'set bank' },
+      { event: 'set bank' },
       { type: 'msg', data: `빈집이라는 주거 공동체들의 전월세 보증금을 모으기 위해서였습니다.`, more: true },
       { type: 'function', event: 'set communes', func: getCommunes },
       { type: 'msg', data: `여러분 중에는 빈집에 살고 있는 사람도 있었고,` },

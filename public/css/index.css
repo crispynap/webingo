@@ -21,6 +21,8 @@ body {
   font-size: 15px;
   background-color: #272823;
   color: #eee;
+  font-weight: 300;
+  text-align: center;
 }
 #content {
   height: 100%;

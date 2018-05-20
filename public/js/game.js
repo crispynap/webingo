@@ -86,9 +86,19 @@ $(document).ready(() => {
     $('.bingo_display .namespace').append(`작은 은행`);
   });
 
-  socket.on('set communes', msg => {
-    console.log(msg)
-    $('.bingo_display .namespace').append(msg);
+  socket.on('set communes', communes => {
+    $('.communes_display .namespace').append(`공동체들`);
+
+    _.each(communes, commune => {
+      $('.communes_display').append(`
+        <div class="commune">
+          <i class="fas fa-home"></i>
+          <h1 class="name">${commune.name}</h1>
+          <h2 class="members">구성원: ${commune.members}명</h2>
+          <h2 class="util">대출금: ${commune.util}</h2>
+        </div>
+      `);
+    });
   });
 
 });

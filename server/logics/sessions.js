@@ -1,5 +1,5 @@
 const _ = require('partial-js');
-const strings = require('../strings');
+const Strings = require('../Strings');
 
 
 module.exports = function (io) {
@@ -31,9 +31,6 @@ module.exports = function (io) {
     getPlayersNick() { return _.map(this.players, player => player.nick); }
     removePlayer(id) { this.players = _.filter(this.players, player => player.clientId !== id); }
 
-    get communes() {
-      return this.game.bingo.communes;
-    }
   }
 
   class Player {
@@ -60,23 +57,33 @@ module.exports = function (io) {
   }
 
   class Bingo {
-    constructor(id, nick) {
-      this.id = id;
-      this.nick = nick;
-      this.communes = this.genCommunes();
+    constructor() {
+      this.communes = [];
+      this.addCommune('', 8, 4000);
+      this.addCommune('', 6, 2000);
+      this.addCommune('', 5, 3000);
     }
 
-    genCommunes() {
-      const communes = [];
-      strings.getLCommuneName(['잘자리', '아랫집', '살림집'])
-      return new Commune();
+    getCommuneNames() {
+      return _.map(this.communes, ({ name }) => name);
+    }
+
+    addCommune(name, members, util, desc) {
+      const commune = new Commune(name, members, util, desc);
+
+      if (_.isEmpty(commune.name)) commune.name = Strings.getCommuneName(this.getCommuneNames());
+
+      this.communes.push(commune);
     }
 
   }
 
   class Commune {
-    constructor(name) {
+    constructor(name, members = 0, util = 0, desc = '') {
       this.name = name;
+      this.members = members;
+      this.util = util;
+      this.desc = desc;
     }
   }
 
@@ -97,6 +104,8 @@ module.exports = function (io) {
       const session = new Session(socket.id);
       sessions.add(session);
       socket.session = session;
+      socket.game = session.game;
+      socket.bingo = session.game.bingo;
       socket.join(session.num);
       socket.emit('set session number', session.num);
     });

@@ -5,12 +5,11 @@ const getFreeNames = (names, exists) => _.filter(names, name => !isExist(name, e
 const getRandomName = names => names[_.random(0, names.length - 1)];
 
 const strings = {
-  livingCommuneNames: ['잘자리', '아랫집', '살림집', '사랑채', '마실집'],
+  communeNames: ['잘자리', '아랫집', '살림집', '사랑채', '마실집'],
 
-
-  getLCommuneName(exists) {
+  getCommuneName(exists) {
     return _.go(
-      getFreeNames(this.livingCommuneNames, exists),
+      getFreeNames(this.communeNames, exists),
       getRandomName
     );
   }
