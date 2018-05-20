@@ -25,9 +25,9 @@ module.exports = function (io, sessions) {
       };
     }
 
-    const getCommunes = () => {
-      return socket.bingo.communes;
-    }
+    const addCommune1 = () => socket.bingo.communes[0];
+    const addCommune2 = () => socket.bingo.communes[1];
+    const addCommune3 = () => socket.bingo.communes[2];
 
     const startScripts = [
       { type: 'clear' },
@@ -39,7 +39,10 @@ module.exports = function (io, sessions) {
       { type: 'msg', data: `20XX년, 여러분은 작은 은행을 하나 만듭니다.`, more: true },
       { event: 'set bank' },
       { type: 'msg', data: `빈집이라는 주거 공동체들의 전월세 보증금을 모으기 위해서였습니다.`, more: true },
-      { type: 'function', event: 'set communes', func: getCommunes },
+      { event: 'set communes', more: true },
+      { type: 'function', event: 'add commune', func: addCommune1, more: true, time: 1000 },
+      { type: 'function', event: 'add commune', func: addCommune2, more: true, time: 1500 },
+      { type: 'function', event: 'add commune', func: addCommune3, time: 2000 },
       { type: 'msg', data: `여러분 중에는 빈집에 살고 있는 사람도 있었고,` },
       { type: 'msg', data: `빈집에 놀러오는 사람이나 관심이 있는 사람도 있었으며,` },
       { type: 'msg', data: `빈집은 잘 모르지만 이 은행의 취지에 공감한 사람도 있었습니다.` },

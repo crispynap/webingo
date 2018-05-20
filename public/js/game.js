@@ -77,7 +77,7 @@ $(document).ready(() => {
   const mainMsgShow = (className, msg) => {
     $('.main_display .message_box .old2').removeClass('old2').addClass('old3');
     $('.main_display .message_box .old1').removeClass('old1').addClass('old2');
-    $('.main_display .message_box .new').removeClass('new').addClass('old1');
+    $('.main_display .message_box .new').removeClass('new').removeClass('fadeIn').addClass('old1');
     $('.main_display .message_box').append(`<span class="new ${className} fadeIn" >${msg}</span>`);
     $('.main_display .message_box').scrollTop($('.main_display .message_box')[0].scrollHeight);
   }
@@ -109,17 +109,16 @@ $(document).ready(() => {
         </div>
       </div>
     `);
+  });
 
-    _.each(communes, commune => {
-      $('.communes_display .communes').append(`
-        <div class="commune">
-          <i class="fas fa-home"></i>
-          <h1 class="name">${commune.name}</h1>
-          <h2 class="members">구성원: ${commune.members}명</h2>
-        </div>
-      `);
-      // <h2 class="util">대출금: ${commune.util}</h2>
-    });
+  socket.on('add commune', commune => {
+    $('.communes_display .communes').append(`
+      <div class="commune">
+        <i class="fas fa-home animated_icon"></i>
+        <h1 class="name delayedFadeIn">${commune.name}</h1>
+        <h2 class="members delayedFadeIn">구성원: ${commune.members}명</h2>
+      </div>
+    `);
   });
 
 });
