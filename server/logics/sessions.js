@@ -138,6 +138,10 @@ module.exports = function (io) {
       io.to(session.num).emit('player changed', session.getPlayersNick());
     });
 
+    socket.on('get potrait names', function () {
+      socket.emit('potrait names', Statics.potraitNames, socket.session.getPotraitNames());
+    });
+
     socket.on('session exit', () => {
       const session = socket.session;
       session.removePlayer(socket.id);

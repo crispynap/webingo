@@ -8,8 +8,10 @@
   width: 50%;
   height: 70%;
   border: 1px solid #ddd;
-  padding: 50px 0;
+  padding: 50px 0 0;
+  overflow-y: scroll;
 }
+.window_gameset::-webkit-scrollbar{width: 1px;}
 
 .window_gameset h1{
   font-size: 28px;
@@ -117,25 +119,37 @@ button:active{
   padding: 0 5%;
   font-size: 20px;
 }
-.potrait_picker{
+.session_potrait{
   text-align: left;
   padding: 0 5%;
   margin-top: -30px;
 }
-.potrait_picker>span{
+.session_potrait>span{
   font-size: 20px;
 }
-.potrait_picker>img{
+.session_potrait>img{
   position: relative;
   width: 100px;
   top: 40px;
   margin-left: 10px;
   cursor: pointer;
 }
-.potrait_picker>button{
+.session_potrait>button{
   width: 50px;
   margin-left: 20px;
 }
+
+.potrait_picker{margin-top: 30px;}
+.potrait_picker > span{
+  font-size: 20px;
+}
+.picker_window > img{
+  width: 21%;
+  margin: 2%; 
+  vertical-align: middle;
+  cursor: pointer;
+}
+
 
 #close_session_btn{
   position: absolute;

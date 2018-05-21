@@ -59,14 +59,29 @@ $(document).ready(() => {
     on($('.wait_session'));
     $('.session_number').text(sessionId);
     $('.session_nick > .nick').text(player.nick);
-    $('.potrait_picker > img').attr("src", `/img/potraits/${player.potraitName}`);
+    $('.session_potrait > img').attr("src", `/img/potraits/${player.potraitName}`);
   });
 
   socket.on('player changed', nicks => {
     $('.player_list').text(`${nicks.join(', ')} (${nicks.length}명)`);
   });
 
+  const changePotrait = () => {
+    off($('.wait_session'));
+    on($('.potrait_picker'));
+    socket.emit('get potrait names');
+  };
+  $('.session_potrait > img').click(changePotrait);
+  $('.session_potrait > button').click(changePotrait);
 
+  socket.on('potrait names', (potraitNames, usedPotraitNames) => {
+    const potraits = _.reduce(potraitNames, (memo, potraitName) => {
+      return memo + `<img src="/img/potraits/${potraitName}">`;
+    }, '');
+
+    console.log(potraits);
+    $('.picker_window').append(potraits);
+  });
 
   socket.on('main clear', label => {
     $('.main_display .message_box').empty();
