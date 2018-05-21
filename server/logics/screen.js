@@ -1,5 +1,5 @@
 const _ = require('partial-js');
-const S = require('../strings');
+const Statics = require('../statics');
 
 module.exports = function (io, sessions) {
 

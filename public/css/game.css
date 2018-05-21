@@ -85,19 +85,19 @@ button:active{
 
 .wait_session>span{
   display: block;
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 .session_num{
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: left;
   padding: 0 5%;
 }
-.session_num>span{ font-size: 22px;}
+.session_num>span{ font-size: 20px;}
 .session_number{ 
   color: #449744; 
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
 }
 .main_screen .session_number{
   color: #eee;
@@ -105,12 +105,37 @@ button:active{
   font-weight: 500;
 }
 .session_players{
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: left;
   padding: 0 5%;
   font-size: 16px;
 }
-.session_players>span:first-child{ font-size: 22px;}
+.session_players>span:first-child{ font-size: 20px;}
+.session_nick{
+  margin-bottom: 20px;
+  text-align: left;
+  padding: 0 5%;
+  font-size: 20px;
+}
+.potrait_picker{
+  text-align: left;
+  padding: 0 5%;
+  margin-top: -30px;
+}
+.potrait_picker>span{
+  font-size: 20px;
+}
+.potrait_picker>img{
+  position: relative;
+  width: 100px;
+  top: 40px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.potrait_picker>button{
+  width: 50px;
+  margin-left: 20px;
+}
 
 #close_session_btn{
   position: absolute;

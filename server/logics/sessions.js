@@ -1,5 +1,5 @@
 const _ = require('partial-js');
-const Strings = require('../Strings');
+const Statics = require('../Statics');
 
 
 module.exports = function (io) {
@@ -24,11 +24,18 @@ module.exports = function (io) {
       this.game = new Game();
     }
 
-    addPlayer(player) { this.players.push(player); }
+    addPlayer(id, nick) {
+      const player = new Player(id, nick);
+      player.potraitName = Statics.getPotraitName(this.getPotraitNames());
+      this.players.push(player);
+      return player;
+    }
+
     getPlayer(idOrNick) {
       return _.find(this.players, player => player.id == idOrNick || player.nick == idOrNick);
     }
     getPlayersNick() { return _.map(this.players, player => player.nick); }
+    getPotraitNames() { return _.map(this.players, player => player.potraitName); }
     removePlayer(id) { this.players = _.filter(this.players, player => player.clientId !== id); }
 
   }
@@ -37,6 +44,7 @@ module.exports = function (io) {
     constructor(clientId, nick) {
       this.clientId = clientId;
       this.nick = nick;
+      this.potraitName = '';
     }
 
   }
@@ -71,7 +79,7 @@ module.exports = function (io) {
     addCommune(name, members, util, desc) {
       const commune = new Commune(name, members, util, desc);
 
-      if (_.isEmpty(commune.name)) commune.name = Strings.getCommuneName(this.getCommuneNames());
+      if (_.isEmpty(commune.name)) commune.name = Statics.getCommuneName(this.getCommuneNames());
 
       this.communes.push(commune);
     }
@@ -122,10 +130,11 @@ module.exports = function (io) {
       if (!session) { socket.emit('no session'); return; }
       if (session.getPlayer(nick)) { socket.emit('duplicated nick'); return; }
 
-      session.addPlayer(new Player(socket.id, nick));
+      const player = session.addPlayer(socket.id, nick);
       socket.session = session;
+      socket.player = player;
       socket.join(session.num);
-      socket.emit('player added', session.num);
+      socket.emit('player added', session.num, player);
       io.to(session.num).emit('player changed', session.getPlayersNick());
     });
 

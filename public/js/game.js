@@ -53,11 +53,13 @@ $(document).ready(() => {
     on($('.session_warn')).text('동일한 별명이 존재합니다.');
   });
 
-  socket.on('player added', sessionId => {
+  socket.on('player added', (sessionId, player) => {
     off($('.session_warn'));
     off($('.session_set'));
     on($('.wait_session'));
     $('.session_number').text(sessionId);
+    $('.session_nick > .nick').text(player.nick);
+    $('.potrait_picker > img').attr("src", `/img/potraits/${player.potraitName}`);
   });
 
   socket.on('player changed', nicks => {
