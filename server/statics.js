@@ -20,9 +20,11 @@ const strings = {
 
   getPotraitName(exists) {
     return getName(this.potraitNames, exists);
+  },
+
+  states: {
+    startWaiting: '창립총회에 참석 중',
   }
-
-
 }
 
 module.exports = strings;

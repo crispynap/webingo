@@ -162,4 +162,35 @@ $(document).ready(() => {
     `);
   });
 
+  socket.on('set players', players => {
+    $('.players_display').append(`
+      <div class="players delayedFadeIn">
+        <div class="namespace">
+          <div class="animated_bottom_line"></div>
+          활동가
+        </div>
+      </div>
+    `);
+
+    setTimeout(() => {
+      console.log(players)
+      const playersEl = _.reduce(players, (memo, player) => {
+
+        console.log(player)
+        return memo + `
+          <div class="player">
+            <img data-name="${player.potraitName}" src="/img/potraits/${player.potraitName}">
+            <div class="player_desc">
+              <span class="nick">${player.nick}: </span>
+              <span class="state">${player.state}</span>
+            </div>
+          </div>
+        `;
+      }, '');
+
+      $('.players_display .players').append(playersEl);
+    }, 1000);
+  });
+
+
 });

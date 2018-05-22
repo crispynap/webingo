@@ -29,6 +29,8 @@ module.exports = function (io, sessions) {
     const addCommune2 = () => socket.bingo.communes[1];
     const addCommune3 = () => socket.bingo.communes[2];
 
+    const setPlayers = () => socket.session.players;
+
     const startScripts = [
       { type: 'clear' },
       { type: 'msg big', data: `빈고 게임에 참여한 여러분을 환영합니다.` },
@@ -45,7 +47,8 @@ module.exports = function (io, sessions) {
       { type: 'function', event: 'add commune', func: addCommune3, time: 2000 },
       { type: 'msg', data: `여러분 중에는 빈집에 살고 있는 사람도 있었고,` },
       { type: 'msg', data: `빈집에 놀러오는 사람이나 관심이 있는 사람도 있었으며,` },
-      { type: 'msg', data: `빈집은 잘 모르지만 이 은행의 취지에 공감한 사람도 있었습니다.` },
+      { type: 'msg', data: `빈집은 잘 모르지만 이 은행의 취지에 공감한 사람도 있었습니다.`, more: true },
+      { type: 'function', event: 'set players', func: setPlayers },
       { type: 'msg', data: `여러분은 이 은행의 이름을 빈마을 금고라는 의미에서` },
       { type: 'msg', data: `<b>빈고</b>라고 지었습니다.`, more: true },
       { event: 'set bank name to bingo' },

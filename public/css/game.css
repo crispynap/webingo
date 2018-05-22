@@ -199,10 +199,10 @@ button:active{
   font-size: 20px;
 }
 .main_screen > div {position: absolute;box-sizing: border-box;}
-.main_display{height: 60%;width: 50%;left: 25%;top: 8%;overflow: hidden;padding: 2% 7px 0 2%;border: 1px solid #eee;}
+.main_display{height: 60%;width: 45%;left: 25%;top: 8%;overflow: hidden;padding: 2% 7px 0 2%;border: 1px solid #eee;}
 
 .bingo_display{height: 70%;width: calc(25% + 1px);left: 0;}
-.players_display{height: 100%;width: calc(25% + 1px);right: 0;}
+.players_display{height: 100%;width: calc(30% + 1px);right: 0;}
 .top_display{height: calc(8% + 1px);width: 50%;top: 0;left: 25%;padding: 20px 15px 0;text-align: left;}
 .communes_display{height: calc(32% + 1px);width: 75%;bottom: 0;left: 0;text-align: left;}
 
@@ -286,6 +286,27 @@ button:active{
     font-weight: 500;
 }
 
+.players_display .namespace{
+  margin-top: 22px;
+  width: 80%;
+  position: relative;
+  height: 22px;
+}
+.players_display .player{
+  margin-top: 15px;
+  position: relative;
+}
+.players_display img{width: 45px;border: 1px solid #aaa;padding: 2px;box-sizing: border-box;border-radius: 3px;}
+.players_display .player_desc{display: inline-block;position: relative;top: -20px;}
+.players_display .nick{
+  font-size: 18px;
+  line-height: -30px;
+  display: inline-block;
+}
+.players_display .state{
+  font-size: 14px;
+  display: inline-block;
+}
 
 
 .component.on{ animation: fadeIn 0.3s ease-in; }

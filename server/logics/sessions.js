@@ -45,24 +45,18 @@ module.exports = function (io) {
       this.clientId = clientId;
       this.nick = nick;
       this.potraitName = '';
+      this.state = Statics.states.startWaiting;
     }
 
   }
 
   class Game {
     constructor() {
-      this.charactors = [];
       this.bingo = new Bingo();
     }
 
   }
 
-  class Charactor {
-    constructor(id, nick) {
-      this.id = id;
-      this.nick = nick;
-    }
-  }
 
   class Bingo {
     constructor() {
