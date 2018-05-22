@@ -142,6 +142,12 @@ module.exports = function (io) {
       socket.emit('potrait names', Statics.potraitNames, socket.session.getPotraitNames());
     });
 
+    socket.on('potrait changed', function (newPotraitName) {
+      const oldPotraitName = socket.player.potraitName;
+      socket.player.potraitName = newPotraitName;
+      io.to(socket.session.num).emit('used potrait changed', oldPotraitName, newPotraitName)
+    });
+
     socket.on('session exit', () => {
       const session = socket.session;
       session.removePlayer(socket.id);

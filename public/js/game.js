@@ -70,17 +70,41 @@ $(document).ready(() => {
     off($('.wait_session'));
     on($('.potrait_picker'));
     socket.emit('get potrait names');
+
+    $('.potrait_picker').on('click', function (e) {
+      if (e.target.nodeName !== "IMG") return; //is used
+
+      const potraitName = e.target.dataset.name;
+
+      off($('.potrait_picker'));
+      on($('.wait_session'));
+      $('.session_potrait > img').attr("src", `/img/potraits/${potraitName}`);
+      socket.emit('potrait changed', potraitName);
+    });
   };
   $('.session_potrait > img').click(changePotrait);
   $('.session_potrait > button').click(changePotrait);
 
   socket.on('potrait names', (potraitNames, usedPotraitNames) => {
     const potraits = _.reduce(potraitNames, (memo, potraitName) => {
-      return memo + `<img src="/img/potraits/${potraitName}">`;
+
+      let used = '';
+      if (_.find(usedPotraitNames, usedName => potraitName === usedName))
+        used = 'used';
+
+      return memo + `
+        <div class="potrait ${used}">
+          <img data-name="${potraitName}" src="/img/potraits/${potraitName}">
+        </div>
+      `;
     }, '');
 
-    console.log(potraits);
     $('.picker_window').append(potraits);
+  });
+
+  socket.on('used potrait changed', (oldPotraitName, newPotraitName) => {
+    $(`.picker_window img[data-name="${oldPotraitName}"]`).parent().removeClass('used');
+    $(`.picker_window img[data-name="${newPotraitName}"]`).parent().addClass('used');
   });
 
   socket.on('main clear', label => {

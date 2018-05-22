@@ -143,13 +143,33 @@ button:active{
 .potrait_picker > span{
   font-size: 20px;
 }
-.picker_window > img{
-  width: 21%;
-  margin: 2%; 
-  vertical-align: middle;
+.picker_window{margin-top: 15px;}
+.picker_window img{
+  width: 100%;
   cursor: pointer;
 }
-
+.picker_window .potrait:nth-child(4n+1){
+  clear:both;
+}
+.picker_window .potrait{
+  float: left;
+  width: 21%;
+  margin: 2%;
+  position: relative;
+}
+.picker_window .potrait.used::after{
+  content: '사용 중';
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  color: #eee;
+  height: 100%;
+  width: 100%;
+  padding-top: 40%;
+  left: 0;
+  top: 0;
+  font-size: 18px;
+  box-sizing: border-box;
+}
 
 #close_session_btn{
   position: absolute;
@@ -226,7 +246,6 @@ button:active{
   width: 90%;
   margin: 30px auto 0;
   padding-bottom: 7px;
-  /* border-bottom: 1px solid #aaa; */
 }
 
  .namespace .changing_name{
