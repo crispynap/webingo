@@ -1,5 +1,7 @@
-@media screen and (max-width:1000px){
+@media screen and (max-width:700px){
   body{ font-size: 30px;}
+  .open_session{width: 70%;}
+  button{width: 80%;}
 }
 
 .component{ display: none;}
@@ -74,7 +76,7 @@ button:active{
   margin-bottom: 30px;
   font-size: 1.3em;
   padding: 0 30px;
-  line-height: 26px;
+  line-height: 2em;
   word-break: keep-all;
 }
 .new_session b{color: #adade4;font-weight: bold;}
@@ -118,7 +120,7 @@ button:active{
   padding: 0 5%;
   font-size: 1.2em;
 }
-.session_players>span:first-child{ font-size: 1.5em;}
+.session_players>span:first-child{font-size: 1.3em;}
 .session_nick{
   margin-bottom: 20px;
   text-align: left;
@@ -223,7 +225,7 @@ button:active{
   font-size: 1.5em;
   margin-top: 20px;
   word-break: keep-all;
-  line-height: 28px;
+  line-height: 2em;
 }
 .main_display .main_msg_big{
   display: block;
@@ -279,7 +281,7 @@ button:active{
 .communes_display .commune{
     float: left;
     padding: 10px 15px;
-    line-height: 25px;
+    line-height: 1.8em;
     margin-top: 5px;
 }
 .communes_display .commune i{
@@ -308,7 +310,7 @@ button:active{
 .players_display .player_desc{display: inline-block;position: relative;top: -20px;}
 .players_display .nick{
   font-size: 1.3em;
-  line-height: -30px;
+  line-height: -2.2em;
   margin-left: 5px;
   display: inline-block;
 }
