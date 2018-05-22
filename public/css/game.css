@@ -1,7 +1,4 @@
 @media screen and (max-width:700px){
-  body{ font-size: 30px;}
-  .open_session{width: 70%;}
-  button{width: 80%;}
 }
 
 .component{ display: none;}
@@ -51,6 +48,7 @@ button:active{
   padding-bottom: 60px;
   width: 270px;
   margin: 0 auto;
+  max-width: 60%;
 }
 
 .connect_session{
@@ -75,7 +73,7 @@ button:active{
   margin-top: 40px;
   margin-bottom: 30px;
   font-size: 1.3em;
-  padding: 0 30px;
+  padding: 0 15px;
   line-height: 2em;
   word-break: keep-all;
 }
@@ -222,10 +220,10 @@ button:active{
 }
 .main_display .main_msg{
   display: block;
-  font-size: 1.5em;
+  font-size: 1.4em;
   margin-top: 20px;
   word-break: keep-all;
-  line-height: 2em;
+  line-height: 1.5em;
 }
 .main_display .main_msg_big{
   display: block;
