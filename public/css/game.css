@@ -295,17 +295,21 @@ button:active{
 .players_display .player{
   margin-top: 15px;
   position: relative;
+  text-align: left;
+  margin-left: 10%;
 }
 .players_display img{width: 45px;border: 1px solid #aaa;padding: 2px;box-sizing: border-box;border-radius: 3px;}
 .players_display .player_desc{display: inline-block;position: relative;top: -20px;}
 .players_display .nick{
   font-size: 18px;
   line-height: -30px;
+  margin-left: 5px;
   display: inline-block;
 }
 .players_display .state{
   font-size: 14px;
   display: inline-block;
+  /* margin-left: 5px; */
 }
 
 

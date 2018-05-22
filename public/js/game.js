@@ -181,7 +181,7 @@ $(document).ready(() => {
           <div class="player">
             <img data-name="${player.potraitName}" src="/img/potraits/${player.potraitName}">
             <div class="player_desc">
-              <span class="nick">${player.nick}: </span>
+              <span class="nick">${player.nick} : </span>
               <span class="state">${player.state}</span>
             </div>
           </div>

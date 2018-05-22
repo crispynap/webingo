@@ -23,7 +23,7 @@ const strings = {
   },
 
   states: {
-    startWaiting: '창립총회에 참석 중',
+    startWaiting: '창립총회에 참석했다.',
   }
 }
 
