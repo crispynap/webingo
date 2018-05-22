@@ -25,6 +25,12 @@ $(document).ready(() => {
 
   $('#connect_session_btn').click(() => {
     const nick = $('#nick_input').val();
+
+    if (nick.length > 4) {
+      on($('.session_warn')).text('별명은 4자까지만 가능합니다.');
+      return;
+    }
+
     const session = $('#session_input').val();
     socket.emit('new player', nick, session);
   });
@@ -54,11 +60,10 @@ $(document).ready(() => {
   });
 
   socket.on('player added', (sessionId, player) => {
-    off($('.session_warn'));
+    off($('.session_warn').empty());
     off($('.session_set'));
     on($('.wait_session'));
     $('.session_number').text(sessionId);
-    $('.session_nick > .nick').text(player.nick);
     $('.session_potrait > img').attr("src", `/img/potraits/${player.potraitName}`);
   });
 
@@ -99,7 +104,7 @@ $(document).ready(() => {
       `;
     }, '');
 
-    $('.picker_window').append(potraits);
+    $('.picker_window').empty().append(potraits);
   });
 
   socket.on('used potrait changed', (oldPotraitName, newPotraitName) => {
