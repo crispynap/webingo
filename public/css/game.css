@@ -1,3 +1,7 @@
+@media screen and (max-width:1000px){
+  body{ font-size: 30px;}
+}
+
 .component{ display: none;}
 .component.on{ display: block;}
 
@@ -61,14 +65,14 @@ button:active{
   height: 20px;
   margin-left: 4px;
   padding-left: 3px;
-  font-size: 14px;
+  font-size: 1em;
 }
 
 .new_session>span{
   display: block;
   margin-top: 40px;
   margin-bottom: 30px;
-  font-size: 18px;
+  font-size: 1.3em;
   padding: 0 30px;
   line-height: 26px;
   word-break: keep-all;
@@ -79,7 +83,7 @@ button:active{
 .session_warn{
   margin-bottom: 15px;
   display: block;
-  font-size: 14px;
+  font-size: 1em;
   color: #dc4d4d;
   opacity: 0;
 }
@@ -97,29 +101,29 @@ button:active{
   text-align: left;
   padding: 0 5%;
 }
-.session_num>span{ font-size: 20px;}
+.session_num>span{ font-size: 1.5em;}
 .session_number{ 
   color: #449744; 
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.5em;
 }
 .main_screen .session_number{
   color: #eee;
-  font-size: 16px;
+  font-size: 1.2em;
   font-weight: 500;
 }
 .session_players{
   margin-bottom: 20px;
   text-align: left;
   padding: 0 5%;
-  font-size: 16px;
+  font-size: 1.2em;
 }
-.session_players>span:first-child{ font-size: 20px;}
+.session_players>span:first-child{ font-size: 1.5em;}
 .session_nick{
   margin-bottom: 20px;
   text-align: left;
   padding: 0 5%;
-  font-size: 20px;
+  font-size: 1.5em;
 }
 .session_potrait{
   text-align: left;
@@ -127,7 +131,7 @@ button:active{
   margin-top: -30px;
 }
 .session_potrait>span{
-  font-size: 20px;
+  font-size: 1.5em;
 }
 .session_potrait>img{
   position: relative;
@@ -143,7 +147,7 @@ button:active{
 
 .potrait_picker{margin-top: 30px;}
 .potrait_picker > span{
-  font-size: 20px;
+  font-size: 1.5em;
 }
 .picker_window{margin-top: 15px;}
 .picker_window img{
@@ -169,7 +173,7 @@ button:active{
   padding-top: 40%;
   left: 0;
   top: 0;
-  font-size: 18px;
+  font-size: 1.4em;
   box-sizing: border-box;
 }
 
@@ -180,7 +184,7 @@ button:active{
   bottom: 3%;
   left: 5%;
   height: 15%;
-  font-size: 20px;
+  font-size: 1.5em;
 }
 #exit_session_btn{
   position: absolute;
@@ -189,7 +193,7 @@ button:active{
   bottom: 3%;
   left: 5%;
   height: 10%;
-  font-size: 20px;
+  font-size: 1.5em;
 }
 #start_session_btn{
   width: 55%;
@@ -198,7 +202,7 @@ button:active{
   bottom: 3%;
   right: 5%;
   height: 15%;
-  font-size: 20px;
+  font-size: 1.5em;
 }
 .main_screen > div {position: absolute;box-sizing: border-box;}
 .main_display{height: 60%;width: 45%;left: 25%;top: 8%;overflow: hidden;padding: 2% 7px 0 2%;border: 1px solid #eee;}
@@ -216,14 +220,14 @@ button:active{
 }
 .main_display .main_msg{
   display: block;
-  font-size: 20px;
+  font-size: 1.5em;
   margin-top: 20px;
   word-break: keep-all;
   line-height: 28px;
 }
 .main_display .main_msg_big{
   display: block;
-  font-size: 24px;
+  font-size: 1.8em;
   margin-top: 20px;
 }
 .main_display .old1{ opacity: 0.65;}
@@ -236,7 +240,7 @@ button:active{
   right: 30%;
   width: 40%;
   height: 15%;
-  font-size: 20px;
+  font-size: 1.5em;
   color: #449744;
   margin: auto;
   bottom: 5%;
@@ -244,7 +248,7 @@ button:active{
 
 .namespace{
   position: relative;
-  font-size: 20px;
+  font-size: 1.5em;
   width: 90%;
   margin: 30px auto 0;
   padding-bottom: 7px;
@@ -279,11 +283,11 @@ button:active{
     margin-top: 5px;
 }
 .communes_display .commune i{
-    font-size: 28px;
+    font-size: 2em;
     display: block;
 }
 .communes_display .commune h1{
-    font-size: 18px;
+    font-size: 1.4em;
     margin-top: 7px;
     font-weight: 500;
 }
@@ -303,15 +307,14 @@ button:active{
 .players_display img{width: 45px;border: 1px solid #aaa;padding: 2px;box-sizing: border-box;border-radius: 3px;}
 .players_display .player_desc{display: inline-block;position: relative;top: -20px;}
 .players_display .nick{
-  font-size: 18px;
+  font-size: 1.3em;
   line-height: -30px;
   margin-left: 5px;
   display: inline-block;
 }
 .players_display .state{
-  font-size: 14px;
+  font-size: 1em;
   display: inline-block;
-  /* margin-left: 5px; */
 }
 
 
