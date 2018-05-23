@@ -108,6 +108,7 @@ module.exports = function (io) {
       socket.session = session;
       socket.game = session.game;
       socket.bingo = session.game.bingo;
+      socket.roll = 'manager';
       socket.join(session.num);
       socket.emit('set session number', session.num);
     });
@@ -152,8 +153,8 @@ module.exports = function (io) {
 
 
   const genSessionNum = () => {
-    let sessionNum = _.random(1, 3);
-    while (sessions.getSession(sessionNum)) sessionNum = _.random(1, 3);
+    let sessionNum = _.random(1, 99);
+    while (sessions.getSession(sessionNum)) sessionNum = _.random(1, 99);
     return sessionNum;
   };
 
