@@ -29,7 +29,10 @@ module.exports = function (io, sessions) {
     const addCommune2 = () => socket.bingo.communes[1];
     const addCommune3 = () => socket.bingo.communes[2];
 
-    const setPlayers = () => socket.session.players;
+    const setPlayers = () => socket.bingo.players;
+    const setMembers1 = () => Math.floor(socket.bingo.members * 0.64);
+    const setMembers2 = () => Math.floor(socket.bingo.members * 0.83);
+    const setMembers3 = () => socket.bingo.members;
 
     const startScripts = [
       { type: 'clear' },
@@ -45,9 +48,12 @@ module.exports = function (io, sessions) {
       { type: 'function', event: 'add commune', func: addCommune1, more: true, time: 1000 },
       { type: 'function', event: 'add commune', func: addCommune2, more: true, time: 1500 },
       { type: 'function', event: 'add commune', func: addCommune3, time: 2000 },
-      { type: 'msg', data: `여러분 중에는 빈집에 살고 있는 사람도 있었고,` },
-      { type: 'msg', data: `빈집에 놀러오는 사람이나 관심이 있는 사람도 있었으며,` },
+      { type: 'msg', data: `여러분 중에는 빈집에 살고 있는 사람도 있었고,`, more: true },
+      { type: 'function', event: 'set members', func: setMembers1, time: 500 },
+      { type: 'msg', data: `빈집에 놀러오는 사람이나 관심이 있는 사람도 있었으며,`, more: true },
+      { type: 'function', event: 'change members', func: setMembers2, time: 500 },
       { type: 'msg', data: `빈집은 잘 모르지만 이 은행의 취지에 공감한 사람도 있었습니다.`, more: true },
+      { type: 'function', event: 'change members', func: setMembers3, time: 500, more: true },
       { type: 'function', event: 'set players', func: setPlayers },
       { type: 'msg', data: `여러분은 이 은행의 이름을 빈마을 금고라는 의미에서` },
       { type: 'msg', data: `<b>빈고</b>라고 지었습니다.`, more: true },
@@ -55,6 +61,8 @@ module.exports = function (io, sessions) {
     ];
 
     socket.on('session start', () => {
+      socket.bingo.members = 40 + socket.session.players.length;
+
       socket.scriptQueue = genScriptsQueue(startScripts);
       socket.scriptQueue.next();
     });

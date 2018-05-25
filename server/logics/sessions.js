@@ -64,6 +64,7 @@ module.exports = function (io) {
       this.addCommune('', 8, 4000);
       this.addCommune('', 6, 2000);
       this.addCommune('', 5, 3000);
+      this.members = 0;
     }
 
     getCommuneNames() {

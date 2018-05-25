@@ -167,6 +167,36 @@ $(document).ready(() => {
     `);
   });
 
+  const setChangingNum = (el, object, timeout = undefined) => {
+    const now = parseInt(el.text(), 10);
+
+    if (!timeout) {
+      timeout = setTimeout(() => {
+        setChangingNum(el, object, timeout);
+      }, 300);
+    } else if (now == object) {
+      clearTimeout(timeout);
+    } else {
+      now > object ? el.text(now - 1) : el.text(now + 1);
+      timeout = setTimeout(() => {
+        setChangingNum(el, object, timeout);
+      }, 30);
+    }
+  }
+
+  socket.on('set members', membersNum => {
+    $('.bingo_display').append(`
+      <div class="members fadeIn">
+        <span>조합원 : </span><span class="members_num">0</span>
+      </div>
+    `);
+    setChangingNum($('.bingo_display .members_num'), membersNum);
+  });
+
+  socket.on('change members', membersNum => {
+    setChangingNum($('.bingo_display .members_num'), membersNum);
+  });
+
   socket.on('set players', players => {
     $('.players_display').append(`
       <div class="players delayedFadeIn">
@@ -178,10 +208,7 @@ $(document).ready(() => {
     `);
 
     setTimeout(() => {
-      console.log(players)
       const playersEl = _.reduce(players, (memo, player) => {
-
-        console.log(player)
         return memo + `
           <div class="player">
             <img data-name="${player.potraitName}" src="/img/potraits/${player.potraitName}">
