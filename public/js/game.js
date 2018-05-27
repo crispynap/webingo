@@ -187,7 +187,7 @@ $(document).ready(() => {
   socket.on('set members', membersNum => {
     $('.bingo_display').append(`
       <div class="members fadeIn">
-        <span>조합원 : </span><span class="members_num">0</span>
+        <span>조합원 : </span><span class="members_num">0</span><span>명</span>
       </div>
     `);
     setChangingNum($('.bingo_display .members_num'), membersNum);

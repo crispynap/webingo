@@ -3,6 +3,7 @@
 
 .component{ display: none;}
 .component.on{ display: block;}
+b{color: #adade4;font-weight: bold;}
 
 .window_gameset {
   position: relative;
@@ -77,7 +78,6 @@ button:active{
   line-height: 2em;
   word-break: keep-all;
 }
-.new_session b{color: #adade4;font-weight: bold;}
 
 
 .session_warn{
