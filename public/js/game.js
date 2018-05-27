@@ -168,9 +168,10 @@ $(document).ready(() => {
   });
 
   const setChangingNum = (el, object) => {
-    const now = parseInt(el.text(), 10);
+    let now = parseInt(el.text(), 10);
+    if (isNaN(now)) now = 0;
     el.prop('number', now).animateNumber({ number: object, easing: 'ease' });
-  }
+  };
 
   socket.on('set members', membersNum => {
     $('.bingo_display').append(`
