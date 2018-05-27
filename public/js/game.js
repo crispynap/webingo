@@ -167,21 +167,9 @@ $(document).ready(() => {
     `);
   });
 
-  const setChangingNum = (el, object, timeout = undefined) => {
+  const setChangingNum = (el, object) => {
     const now = parseInt(el.text(), 10);
-
-    if (!timeout) {
-      timeout = setTimeout(() => {
-        setChangingNum(el, object, timeout);
-      }, 300);
-    } else if (now == object) {
-      clearTimeout(timeout);
-    } else {
-      now > object ? el.text(now - 1) : el.text(now + 1);
-      timeout = setTimeout(() => {
-        setChangingNum(el, object, timeout);
-      }, 30);
-    }
+    el.prop('number', now).animateNumber({ number: object, easing: 'ease' });
   }
 
   socket.on('set members', membersNum => {
