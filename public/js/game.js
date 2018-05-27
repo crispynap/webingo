@@ -116,8 +116,6 @@ $(document).ready(() => {
     $('.main_display .message_box').empty();
     $('.main_display .button_box').empty().append(`<button id="next_btn">다음</button>`);
     $('.button_box #next_btn').click(() => socket.emit('next queue'));
-
-    socket.emit('next queue');
   });
 
   const mainMsgShow = (className, msg) => {
@@ -132,7 +130,7 @@ $(document).ready(() => {
   socket.on('main message big', msg => { mainMsgShow('main_msg_big', msg) });
 
   socket.on('set bank', msg => {
-    $('.bingo_display').append(`
+    $('.bingo_display').prepend(`
       <div class="namespace delayedFadeIn">
         <div class="animated_bottom_line"></div>
         <div class="changing_name">
@@ -143,7 +141,7 @@ $(document).ready(() => {
 
   socket.on('set bank name to bingo', msg => {
     $('.bingo_display .namespace span').addClass('fadeOut');
-    $('.bingo_display .namespace').append('<span class="fadeIn">빈고</span>');
+    $('.bingo_display>.namespace').append('<span class="fadeIn">빈고</span>');
   });
 
   socket.on('set communes', communes => {
@@ -159,10 +157,14 @@ $(document).ready(() => {
 
   socket.on('add commune', commune => {
     $('.communes_display .communes').append(`
-      <div class="commune">
+      <div class="commune" data-commune="${commune.name}">
         <i class="fas fa-home animated_icon"></i>
-        <h1 class="name delayedFadeIn">${commune.name}</h1>
-        <h2 class="members delayedFadeIn">구성원: ${commune.members}명</h2>
+        <div class="name_panel delayedFadeIn">
+          이름 : <span class="name">${commune.name}</span>
+        </div>
+        <div class="members_panel delayedFadeIn">
+          구성원 : <span class="members">${commune.members}</span>명
+        </div>
       </div>
     `);
   });
@@ -174,16 +176,16 @@ $(document).ready(() => {
   };
 
   socket.on('set members', membersNum => {
-    $('.bingo_display').append(`
-      <div class="members fadeIn">
-        <span>조합원 : </span><span class="members_num">0</span><span>명</span>
+    $('.bingo_display .info_box').append(`
+      <div class="members_panel fadeIn">
+        조합원 : <span class="members">0</span>명
       </div>
     `);
-    setChangingNum($('.bingo_display .members_num'), membersNum);
+    setChangingNum($('.bingo_display .members'), membersNum);
   });
 
   socket.on('change members', membersNum => {
-    setChangingNum($('.bingo_display .members_num'), membersNum);
+    setChangingNum($('.bingo_display .members'), membersNum);
   });
 
   socket.on('set players', players => {
@@ -213,5 +215,51 @@ $(document).ready(() => {
     }, 1000);
   });
 
+  socket.on('set funds', ({ funds, deposit }) => {
+    on($('.bingo_display .finance_box'));
+    $('.bingo_display .commons').append(`
+      <div class="deposit_panel delayedFadeIn">
+        예치금 : <span class="deposit">0</span>만 원
+      </div>
+    `);
+    $('.bingo_display .commoner').append(`
+      <div class="funds_panel delayedFadeIn">
+        예금 총액 : <span class="funds">0</span>만 원
+      </div>
+    `);
+    setChangingNum($('.bingo_display .funds'), funds);
+    setChangingNum($('.bingo_display .deposit'), deposit);
+  });
+
+  socket.on('set utils', ({ utils, deposit, communes }) => {
+    $('.bingo_display .commons').append(`
+      <div class="utils_panel delayedFadeIn">
+        대출금 : <span class="utils">0</span>만 원
+      </div>
+    `);
+    setChangingNum($('.bingo_display .utils'), utils);
+    setChangingNum($('.bingo_display .deposit'), deposit);
+
+    _.each(communes, commune => {
+      $(`.communes_display [data-commune="${commune.name}"]`).append(`
+        <div class="util_panel delayedFadeIn">
+          대출 : <span class="util">0</span>만 원
+        </div>
+      `);
+      setChangingNum($(`[data-commune="${commune.name}"] .util`), commune.util);
+    });
+  });
+
+  socket.on('set income', ({ income }) => {
+    $('.bingo_display .info_box').append(`
+      <div class="income_panel delayedFadeIn">
+        수입(예정) : <span class="income">0</span>만 원
+      </div>
+      <div class="expend_panel delayedFadeIn">
+        지출(예정) : <span class="expend">0</span>원
+      </div>
+    `);
+    setChangingNum($('.bingo_display .income'), income);
+  });
 
 });

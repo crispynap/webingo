@@ -46,22 +46,23 @@ module.exports = function (io, sessions) {
     const setUtils = () => {
       const bingo = socket.bingo;
       bingo.utils = 11000;
-      return { utils: bingo.utils, communes: bingo.communes };
+      bingo.deposit -= bingo.utils;
+      return { utils: bingo.utils, deposit: bingo.deposit, communes: bingo.communes };
     };
 
     const setIncome = () => {
       const bingo = socket.bingo;
-      bingo.incomes = 1000;
-      return { communes: socket.bingo.communes };
+      bingo.income = 1000;
+      return { income: bingo.income };
     };
 
     const startScripts = [
-      { type: 'clear' },
+      { type: 'clear', more: true },
       { type: 'msg big', data: `빈고 게임에 참여한 여러분을 환영합니다.` },
       { type: 'msg', data: `이 게임에서 여러분은 빈고의 활동가가 됩니다.` },
       { type: 'msg', data: `함께 빈고를 운영하며 빈고를 익히는 것이 이 게임의 목표입니다.` },
       { type: 'msg', data: `그럼 시작해봅시다.` },
-      { type: 'clear' },
+      { type: 'clear', more: true },
       { type: 'msg', data: `20XX년, 어떤 사람들은 작은 은행을 하나 만듭니다.`, more: true },
       { event: 'set bank' },
       { type: 'msg', data: `빈집이라는 주거 공동체들의 전월세 보증금을 모으기 위해서였습니다.`, more: true },
