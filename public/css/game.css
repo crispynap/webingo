@@ -207,10 +207,11 @@ button:active{
 .main_screen > div {position: absolute;box-sizing: border-box;}
 .main_display{height: 60%;width: 45%;left: 25%;top: 8%;overflow: hidden;padding: 2% 7px 0 2%;border: 1px solid #eee;}
 
-.bingo_display{height: 70%;width: calc(25% + 1px);left: 0;}
-.players_display{height: 100%;width: calc(30% + 1px);right: 0;}
 .top_display{height: calc(8% + 1px);width: 50%;top: 0;left: 25%;padding: 20px 15px 0;text-align: left;}
-.communes_display{height: calc(32% + 1px);width: 75%;bottom: 0;left: 0;text-align: left;}
+.bingo_display{height: 70%;width: calc(25% + 1px);left: 0;}
+.players_display{height: 70%;width: calc(30% + 1px);right: 0;}
+.projects_display{height: calc(32% + 1px);width: 50%;bottom: 0;left: 0;text-align: left;}
+.communes_display{height: calc(32% + 1px);width: 50%;bottom: 0;right: 0;text-align: left;}
 
 .main_display ::-webkit-scrollbar {  width: 10px; border-radius: 4px;}
 .main_display .message_box{
@@ -268,6 +269,7 @@ button:active{
   height: 22px;
 }
 .bingo_display .info_box{
+  font-size: 1.2em;
   text-align: left;
   padding: 10px 0 0 25px;
   line-height: 22px;
@@ -287,11 +289,11 @@ button:active{
 .bingo_display .commoner{
   width: calc(50% + 1px);
   right: 0;
-  text-align: left;
+  /* text-align: left; */
 }
 .bingo_display .commons{
   width: calc(50% - 1px);
-  text-align: left;
+  /* text-align: left; */
 }
 
 .communes{
@@ -299,23 +301,36 @@ button:active{
   overflow: hidden;
   display: inline-block;
   text-align: center;
-  min-width: 305px;
+  min-width: 360px;
+  right: 0;
+  float: right;
 }
 
 .communes_display .commune{
     float: left;
-    padding: 10px 15px;
-    line-height: 1.8em;
+    padding: 7px 0 0;
+    line-height: 1.7em;
     margin-top: 5px;
+    width: 120px;
 }
-.communes_display .commune i{
+.communes_display .commune>i{
     font-size: 2em;
     display: block;
 }
-.communes_display .commune h1{
-    font-size: 1.4em;
-    margin-top: 7px;
+.communes_display .commune .name_panel{
+    font-size: 1.2em;
+    margin-top: 4px;
     font-weight: 500;
+}
+.communes_display .util_panel{
+  font-size: 13px;
+  margin-top: 4px;
+  line-height:normal;
+}
+.communes_display .interest_panel{
+  margin-top: 3px;
+  font-size: 13px;
+  line-height:normal;
 }
 
 .players_display .namespace{

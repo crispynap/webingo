@@ -87,6 +87,7 @@ module.exports = function (io) {
       this.members = members;
       this.util = util;
       this.desc = desc;
+      this.interest = 12;
     }
   }
 

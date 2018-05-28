@@ -160,7 +160,7 @@ $(document).ready(() => {
       <div class="commune" data-commune="${commune.name}">
         <i class="fas fa-home animated_icon"></i>
         <div class="name_panel delayedFadeIn">
-          이름 : <span class="name">${commune.name}</span>
+          <span class="name">${commune.name}</span>
         </div>
         <div class="members_panel delayedFadeIn">
           구성원 : <span class="members">${commune.members}</span>명
@@ -227,7 +227,7 @@ $(document).ready(() => {
     $('.bingo_display .commoner').append(`
       <div class="animated_left_line"></div>
       <div class="funds_panel delayedFadeIn">
-        예금 총액 : <span class="funds">0</span>만 원
+        예금 : <span class="funds">0</span>만 원
       </div>
     `);
     delayedChangingNum($('.bingo_display .funds'), funds);
@@ -246,22 +246,22 @@ $(document).ready(() => {
     _.each(communes, commune => {
       $(`.communes_display [data-commune="${commune.name}"]`).append(`
         <div class="util_panel delayedFadeIn">
-          대출 : <span class="util">${commune.util}</span>만 원
+          <i class="fas fa-won-sign animated_icon"></i>
+          <span class="util">${commune.util}</span>만 원
         </div>
       `);
     });
   });
 
-  socket.on('set income', ({ income }) => {
-    $('.bingo_display .info_box').append(`
-      <div class="income_panel delayedFadeIn">
-        수입(예정) : <span class="income">0</span>만 원
-      </div>
-      <div class="expend_panel delayedFadeIn">
-        지출(예정) : <span class="expend">0</span>원
-      </div>
-    `);
-    delayedChangingNum($('.bingo_display .income'), income);
+  socket.on('set interests', ({ communes }) => {
+    _.each(communes, commune => {
+      $(`.communes_display [data-commune="${commune.name}"]`).append(`
+        <div class="interest_panel delayedFadeIn">
+          <span class="interest">${commune.interest}</span>% / 
+          <span class="interest_month">${commune.util * commune.interest / 100}</span>만 원
+        </div>
+      `);
+    });
   });
 
 });

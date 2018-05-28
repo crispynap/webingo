@@ -50,10 +50,8 @@ module.exports = function (io, sessions) {
       return { utils: bingo.utils, deposit: bingo.deposit, communes: bingo.communes };
     };
 
-    const setIncome = () => {
-      const bingo = socket.bingo;
-      bingo.income = 1000;
-      return { income: bingo.income };
+    const setinterests = () => {
+      return { communes: socket.bingo.communes };
     };
 
     const startScripts = [
@@ -89,11 +87,8 @@ module.exports = function (io, sessions) {
       { type: 'msg', data: `공동체들은 공동체 공간의 보증금을 빈고에서 대출합니다.`, more: true },
       { type: 'function', event: 'set utils', func: setUtils, time: littleDelay },
       { type: 'msg', data: `그리고 대출 이자를 매달 빈고에 공유합니다.`, more: true },
-      { type: 'function', event: 'set income', func: setIncome, time: littleDelay },
-      {
-        type: 'msg', data: `빈고의 수입은 빈고의 구성원들과 세상 만인에게 공유하기로 사람들은 약속했습니다. 
-                            \n 어떻게 분배할 지는 1년 뒤에 정하기로 하구요.`
-      },
+      { type: 'function', event: 'set interests', func: setinterests, time: littleDelay },
+      { type: 'msg', data: `모인 이자를 어떻게 할 지는 1년 뒤에 결정하기로 하였습니다.` },
       { type: 'msg', data: `빈고는 이렇게 시작되었습니다.` },
     ];
 
