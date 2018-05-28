@@ -266,7 +266,30 @@ button:active{
   position: relative;
   height: 22px;
 }
-    
+.bingo_display .info_box{
+  text-align: left;
+  padding: 10px 15px;
+  line-height: 22px;
+  height: 30%;
+}
+.bingo_display .finance_box{
+  position: relative;
+  height: 50%;
+}
+.finance_box>div{
+  position: absolute;
+  padding: 0 5px;
+  box-sizing: border-box;
+  height: 100%;
+  line-height: 22px;
+}
+.bingo_display .commoner{
+  width: calc(50% + 1px);
+  right: 0;
+}
+.bingo_display .commons{
+  width: calc(50% - 1px);
+}
 
 .communes{
   position: relative;

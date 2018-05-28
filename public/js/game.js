@@ -174,6 +174,8 @@ $(document).ready(() => {
     if (isNaN(now)) now = 0;
     el.prop('number', now).animateNumber({ number: object, easing: 'ease' });
   };
+  const delayedChangingNum = (el, object) => _.delay(setChangingNum, 1000, el, object)
+
 
   socket.on('set members', membersNum => {
     $('.bingo_display .info_box').append(`
@@ -227,18 +229,18 @@ $(document).ready(() => {
         예금 총액 : <span class="funds">0</span>만 원
       </div>
     `);
-    setChangingNum($('.bingo_display .funds'), funds);
-    setChangingNum($('.bingo_display .deposit'), deposit);
+    delayedChangingNum($('.bingo_display .funds'), funds);
+    delayedChangingNum($('.bingo_display .deposit'), deposit);
   });
 
   socket.on('set utils', ({ utils, deposit, communes }) => {
     $('.bingo_display .commons').append(`
-      <div class="utils_panel delayedFadeIn">
+      <div class="utils_panel fadeIn">
         대출금 : <span class="utils">0</span>만 원
       </div>
     `);
-    setChangingNum($('.bingo_display .utils'), utils);
-    setChangingNum($('.bingo_display .deposit'), deposit);
+    delayedChangingNum($('.bingo_display .utils'), utils);
+    delayedChangingNum($('.bingo_display .deposit'), deposit);
 
     _.each(communes, commune => {
       $(`.communes_display [data-commune="${commune.name}"]`).append(`
@@ -246,7 +248,7 @@ $(document).ready(() => {
           대출 : <span class="util">0</span>만 원
         </div>
       `);
-      setChangingNum($(`[data-commune="${commune.name}"] .util`), commune.util);
+      delayedChangingNum($(`[data-commune="${commune.name}"] .util`), commune.util);
     });
   });
 
