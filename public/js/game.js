@@ -191,30 +191,33 @@ $(document).ready(() => {
   });
 
   socket.on('set players', players => {
-    $('.players_display').append(`
+    $('.players_display').prepend(`
       <div class="players delayedFadeIn">
-        <div class="namespace">
+        <div class="empty namespace">...</div>
+        <div class="namespace component">
           <div class="animated_bottom_line"></div>
           활동가
         </div>
       </div>
     `);
 
-    setTimeout(() => {
-      const playersEl = _.reduce(players, (memo, player) => {
-        return memo + `
-          <div class="player">
-            <img data-name="${player.potraitName}" src="/img/potraits/${player.potraitName}">
-            <div class="player_desc">
-              <span class="nick">${player.nick} : </span>
-              <span class="state">${player.state}</span>
-            </div>
+    const playersEl = _.reduce(players, (memo, player) => {
+      return memo + `
+        <div class="player">
+          <img data-name="${player.potraitName}" src="/img/potraits/${player.potraitName}">
+          <div class="player_desc">
+            <span class="nick">${player.nick} : </span>
+            <span class="state">${player.state}</span>
           </div>
-        `;
-      }, '');
+        </div>
+      `;
+    }, '');
+    $('.players_display .players').append(playersEl);
+  });
 
-      $('.players_display .players').append(playersEl);
-    }, 1000);
+  socket.on('set activist', () => {
+    $('.players_display .players .empty.namespace').hide();
+    on($('.players_display .players .namespace'));
   });
 
   socket.on('set funds', ({ funds, deposit }) => {
@@ -258,7 +261,7 @@ $(document).ready(() => {
       $(`.communes_display [data-commune="${commune.name}"]`).append(`
         <div class="interest_panel delayedFadeIn">
           <span class="interest">${commune.interest}</span>% / 
-          <span class="interest_month">${commune.util * commune.interest / 100}</span>만 원
+          <span class="interest_month">${commune.util * commune.interest / 100 / 12}</span>만 원
         </div>
       `);
     });

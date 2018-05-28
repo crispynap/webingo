@@ -31,7 +31,7 @@ module.exports = function (io, sessions) {
     const addCommune2 = () => socket.bingo.communes[1];
     const addCommune3 = () => socket.bingo.communes[2];
 
-    const setPlayers = () => socket.bingo.players;
+    const setPlayers = () => socket.session.players;
     const setMembers1 = () => Math.floor(socket.bingo.members * 0.64);
     const setMembers2 = () => Math.floor(socket.bingo.members * 0.83);
     const setMembers3 = () => socket.bingo.members;
@@ -74,10 +74,11 @@ module.exports = function (io, sessions) {
       { type: 'function', event: 'change members', func: setMembers2, time: littleDelay },
       { type: 'msg', data: `빈집은 잘 모르지만 이 은행의 취지에 공감한 사람도 있었습니다.`, more: true },
       { type: 'function', event: 'change members', func: setMembers3, time: littleDelay },
-      { type: 'msg', data: `그 중 몇 사람은 이 은행의 운영에 좀 더 깊이 참여하고자 했고,` },
-      { type: 'msg', data: `이들은 활동가라고 불렸습니다.`, more: true },
+      { type: 'msg', data: `그 중 몇 사람은 이 은행의 운영에 좀 더 깊이 참여하고자 했고,`, more: true },
       { type: 'function', event: 'set players', func: setPlayers, time: littleDelay },
-      { type: 'msg', data: `사람들은 작은 은행의 이름을 빈마을의 금고라는 의미에서` },
+      { type: 'msg', data: `이들을 활동가라고 부르기로 했습니다.`, more: true },
+      { event: 'set activist', time: littleDelay },
+      { type: 'msg', data: `이 은행의 이름은 <b>빈마을의 금고</b>라는 의미에서` },
       { type: 'msg', data: `<b>빈고</b>라고 지었습니다.`, more: true },
       { event: 'set bank name to bingo' },
       { type: 'clear', more: true },

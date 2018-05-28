@@ -3,6 +3,7 @@
 
 .component{ display: none;}
 .component.on{ display: block;}
+.empty{ visibility: hidden;}
 b{color: #adade4;font-weight: bold;}
 
 .window_gameset {
@@ -211,7 +212,7 @@ button:active{
 .bingo_display{height: 70%;width: calc(25% + 1px);left: 0;}
 .players_display{height: 70%;width: calc(30% + 1px);right: 0;}
 .projects_display{height: calc(32% + 1px);width: 50%;bottom: 0;left: 0;text-align: left;}
-.communes_display{height: calc(32% + 1px);width: 50%;bottom: 0;right: 0;text-align: left;}
+.communes_display{height: calc(32% + 1px);width: 50%;bottom: 0;right: 0;text-align: left;padding-right: 10px;}
 
 .main_display ::-webkit-scrollbar {  width: 10px; border-radius: 4px;}
 .main_display .message_box{
@@ -289,17 +290,14 @@ button:active{
 .bingo_display .commoner{
   width: calc(50% + 1px);
   right: 0;
-  /* text-align: left; */
 }
 .bingo_display .commons{
   width: calc(50% - 1px);
-  /* text-align: left; */
 }
 
 .communes{
   position: relative;
   overflow: hidden;
-  display: inline-block;
   text-align: center;
   min-width: 360px;
   right: 0;
