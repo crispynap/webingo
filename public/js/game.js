@@ -172,7 +172,7 @@ $(document).ready(() => {
   const setChangingNum = (el, object) => {
     let now = parseInt(el.text(), 10);
     if (isNaN(now)) now = 0;
-    el.prop('number', now).animateNumber({ number: object, easing: 'ease' });
+    el.prop('number', now).animateNumber({ number: object, easing: 'swing' }, 1000);
   };
   const delayedChangingNum = (el, object) => _.delay(setChangingNum, 1000, el, object)
 
@@ -225,6 +225,7 @@ $(document).ready(() => {
       </div>
     `);
     $('.bingo_display .commoner').append(`
+      <div class="animated_left_line"></div>
       <div class="funds_panel delayedFadeIn">
         예금 총액 : <span class="funds">0</span>만 원
       </div>
@@ -245,10 +246,9 @@ $(document).ready(() => {
     _.each(communes, commune => {
       $(`.communes_display [data-commune="${commune.name}"]`).append(`
         <div class="util_panel delayedFadeIn">
-          대출 : <span class="util">0</span>만 원
+          대출 : <span class="util">${commune.util}</span>만 원
         </div>
       `);
-      delayedChangingNum($(`[data-commune="${commune.name}"] .util`), commune.util);
     });
   });
 
@@ -261,7 +261,7 @@ $(document).ready(() => {
         지출(예정) : <span class="expend">0</span>원
       </div>
     `);
-    setChangingNum($('.bingo_display .income'), income);
+    delayedChangingNum($('.bingo_display .income'), income);
   });
 
 });
