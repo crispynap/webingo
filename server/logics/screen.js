@@ -25,7 +25,7 @@ module.exports = function (io, sessions) {
       };
     }
 
-    const littleDelay = 200;
+    const DELAY_LITTLE = 200;
 
     const addCommune1 = () => socket.bingo.communes[0];
     const addCommune2 = () => socket.bingo.communes[1];
@@ -71,24 +71,24 @@ module.exports = function (io, sessions) {
       { type: 'msg', data: `사람들 중에는 빈집에 살고 있는 사람도 있었고,`, more: true },
       { type: 'function', event: 'set members', func: setMembers1, time: 300 },
       { type: 'msg', data: `빈집에 놀러오는 사람이나 관심이 있는 사람도 있었으며,`, more: true },
-      { type: 'function', event: 'change members', func: setMembers2, time: littleDelay },
+      { type: 'function', event: 'change members', func: setMembers2, time: DELAY_LITTLE },
       { type: 'msg', data: `빈집은 잘 모르지만 이 은행의 취지에 공감한 사람도 있었습니다.`, more: true },
-      { type: 'function', event: 'change members', func: setMembers3, time: littleDelay },
+      { type: 'function', event: 'change members', func: setMembers3, time: DELAY_LITTLE },
       { type: 'msg', data: `그 중 몇 사람은 이 은행의 운영에 좀 더 깊이 참여하고자 했고,`, more: true },
-      { type: 'function', event: 'set players', func: setPlayers, time: littleDelay },
+      { type: 'function', event: 'set players', func: setPlayers, time: DELAY_LITTLE },
       { type: 'msg', data: `이들을 활동가라고 부르기로 했습니다.`, more: true },
-      { event: 'set activist', time: littleDelay },
+      { event: 'set activist', time: DELAY_LITTLE },
       { type: 'msg', data: `이 은행의 이름은 <b>빈마을의 금고</b>라는 의미에서` },
       { type: 'msg', data: `<b>빈고</b>라고 지었습니다.`, more: true },
       { event: 'set bank name to bingo' },
       { type: 'clear', more: true },
       { type: 'msg', data: `빈고의 운영은 이렇습니다.` },
       { type: 'msg', data: `조합원들은 각자가 가진 돈을 빈고에 예금합니다.`, more: true },
-      { type: 'function', event: 'set funds', func: setFunds, time: littleDelay },
+      { type: 'function', event: 'set funds', func: setFunds, time: DELAY_LITTLE },
       { type: 'msg', data: `공동체들은 공동체 공간의 보증금을 빈고에서 대출합니다.`, more: true },
-      { type: 'function', event: 'set utils', func: setUtils, time: littleDelay },
+      { type: 'function', event: 'set utils', func: setUtils, time: DELAY_LITTLE },
       { type: 'msg', data: `그리고 대출 이자를 매달 빈고에 공유합니다.`, more: true },
-      { type: 'function', event: 'set interests', func: setinterests, time: littleDelay },
+      { type: 'function', event: 'set interests', func: setinterests, time: DELAY_LITTLE },
       { type: 'msg', data: `모인 이자를 어떻게 할 지는 1년 뒤에 결정하기로 하였습니다.` },
       { type: 'msg', data: `빈고는 이렇게 시작되었습니다.` },
     ];
