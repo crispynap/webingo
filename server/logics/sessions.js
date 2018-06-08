@@ -130,6 +130,7 @@ module.exports = function (io) {
       const player = session.addPlayer(socket.id, nick);
       socket.session = session;
       socket.player = player;
+      socket.roll = 'player';
       socket.join(session.num);
       socket.emit('player added', session.num, player);
       io.to(session.num).emit('player changed', session.getPlayersNick());

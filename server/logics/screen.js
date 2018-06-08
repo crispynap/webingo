@@ -6,6 +6,7 @@ module.exports = function (io, sessions) {
   io.on('connection', function (socket) {
 
     const emit = (event, data) => { socket.emit(event, data) };
+    const groupEmit = (event, data) => { io.to(socket.session.num).emit(event, data); };
     const timeoutEmit = (event, data, time = 0) => setTimeout(() => emit(event, data), time);
     const screenMsg = (data, time = 0) => timeoutEmit('main message', data, time);
     const screenMsgBig = (data, time = 0) => timeoutEmit('main message big', data, time);
@@ -18,6 +19,7 @@ module.exports = function (io, sessions) {
           case 'msg': screenMsg(script.data, script.time); break;
           case 'msg big': screenMsgBig(script.data, script.time); break;
           case 'function': timeoutEmit(script.event, script.func(), script.time); break;
+          case 'group event': groupEmit(script.event, script.data); break;
           default: timeoutEmit(script.event, script.data, script.time);
         }
         if (script.more) continue;
@@ -56,6 +58,7 @@ module.exports = function (io, sessions) {
 
     const startScripts = [
       { type: 'clear', more: true },
+      { type: 'group event', event: 'game started', more: true },
       { type: 'msg big', data: `빈고 게임에 참여한 여러분을 환영합니다.` },
       { type: 'msg', data: `이 게임에서 여러분은 빈고의 활동가가 됩니다.` },
       { type: 'msg', data: `함께 빈고를 운영하며 빈고를 익히는 것이 이 게임의 목표입니다.` },

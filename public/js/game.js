@@ -9,6 +9,7 @@ $(document).ready(() => {
     socket.emit('new session');
     off($('.session_set'));
     on($('.new_session'));
+    socket.roll = 'manager';
   });
 
   $('#close_session_btn').click(() => {
@@ -65,6 +66,7 @@ $(document).ready(() => {
     on($('.wait_session'));
     $('.session_number').text(sessionId);
     $('.session_potrait > img').attr("src", `/img/potraits/${player.potraitName}`);
+    socket.roll = 'player';
   });
 
   socket.on('player changed', nicks => {
@@ -265,6 +267,19 @@ $(document).ready(() => {
         </div>
       `);
     });
+  });
+
+  socket.on('game started', () => {
+    if (socket.roll !== 'player') return;
+
+    off($('.window_gameset'));
+    on($('.user_screen'));
+    $('.user_screen').append(`
+      <div class="message_panel delayedFadeIn">
+        <p>세션이 시작되었습니다.</p>
+        <p>메인 스크린에 주목해주세요.</p>
+      </div>
+    `);
   });
 
 });
