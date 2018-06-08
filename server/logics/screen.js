@@ -58,7 +58,7 @@ module.exports = function (io, sessions) {
 
     const startScripts = [
       { type: 'clear', more: true },
-      { type: 'group event', event: 'game started', more: true },
+      { type: 'group event', event: 'session started', more: true },
       { type: 'msg big', data: `빈고 게임에 참여한 여러분을 환영합니다.` },
       { type: 'msg', data: `이 게임에서 여러분은 빈고의 활동가가 됩니다.` },
       { type: 'msg', data: `함께 빈고를 운영하며 빈고를 익히는 것이 이 게임의 목표입니다.` },
@@ -93,7 +93,8 @@ module.exports = function (io, sessions) {
       { type: 'msg', data: `그리고 대출 이자를 매달 빈고에 공유합니다.`, more: true },
       { type: 'function', event: 'set interests', func: setinterests, time: DELAY_LITTLE },
       { type: 'msg', data: `모인 이자를 어떻게 할 지는 1년 뒤에 결정하기로 하였습니다.` },
-      { type: 'msg', data: `빈고는 이렇게 시작되었습니다.` },
+      { type: 'msg', data: `빈고는 이렇게 시작되었습니다.`, more: true },
+      { type: 'group event', event: 'game started' },
     ];
 
     socket.on('session start', () => {

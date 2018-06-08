@@ -269,6 +269,19 @@ $(document).ready(() => {
     });
   });
 
+  socket.on('session started', () => {
+    if (socket.roll !== 'player') return;
+
+    off($('.window_gameset'));
+    on($('.user_screen'));
+    $('.user_screen').append(`
+      <div class="message_panel delayedFadeIn">
+        <p>세션이 시작되었습니다.</p>
+        <p>메인 스크린에 주목해주세요.</p>
+      </div>
+    `);
+  });
+
   socket.on('game started', () => {
     if (socket.roll !== 'player') return;
 
